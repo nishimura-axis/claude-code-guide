@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claude Code セットアップガイド | AXIS Ad Division</title>
+    <title>Claude Code セットアップガイド | AXIS アド事業部</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -141,6 +141,10 @@
             margin-bottom: 2rem;
         }
 
+        .hero-badge::before {
+            content: '🤖';
+        }
+
         .hero h1 {
             font-size: clamp(2.5rem, 6vw, 4.5rem);
             font-weight: 700;
@@ -275,18 +279,6 @@
             font-size: 0.95rem;
         }
 
-        .problem-conclusion {
-            text-align: center;
-            margin-top: 2.5rem;
-            padding: 1.5rem;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 12px;
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--accent-primary);
-        }
-
         /* Comparison Table */
         .comparison {
             overflow-x: auto;
@@ -351,6 +343,99 @@
             box-shadow: var(--glow);
         }
 
+        /* Use Cases Section */
+        .use-cases-section {
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .use-case-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .use-case-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+            box-shadow: var(--glow);
+        }
+
+        .use-case-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .use-case-icon {
+            font-size: 1.5rem;
+        }
+
+        .use-case-scene {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .use-case-situation {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .use-case-action, .use-case-result {
+            margin-bottom: 0.75rem;
+        }
+
+        .use-case-action .label, .use-case-result .label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+
+        .use-case-action .label {
+            color: var(--accent-primary);
+        }
+
+        .use-case-result .label {
+            color: #22c55e;
+        }
+
+        .use-case-action p, .use-case-result p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .use-case-result {
+            background: rgba(34, 197, 94, 0.1);
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 0;
+        }
+
+        .use-case-result p {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
         .feature-icon {
             width: 60px;
             height: 60px;
@@ -369,6 +454,53 @@
         }
 
         .feature-card p {
+            color: var(--text-secondary);
+        }
+
+        /* Tools Section */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tool-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .tool-card:hover {
+            border-color: var(--accent-primary);
+        }
+
+        .tool-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-card .role {
+            color: var(--accent-primary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .tool-card p {
             color: var(--text-secondary);
         }
 
@@ -400,10 +532,6 @@
             font-size: 0.75rem;
             font-weight: 700;
             letter-spacing: 0.1em;
-        }
-
-        .step-content {
-            flex: 1;
         }
 
         .step-content h3 {
@@ -442,6 +570,10 @@
             color: var(--text-secondary);
             white-space: pre-wrap;
             word-wrap: break-word;
+        }
+
+        .code-block .comment {
+            color: var(--text-muted);
         }
 
         /* Copy Button */
@@ -515,7 +647,6 @@
 
         .prompt-content {
             padding: 1.5rem;
-            position: relative;
         }
 
         .prompt-content pre {
@@ -526,51 +657,25 @@
             line-height: 1.6;
         }
 
-        .prompt-note {
-            margin-top: 1rem;
-            padding: 1rem;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 8px;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
         /* Policy Cards */
         .policy-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .policy-card {
-            padding: 2rem;
             background: var(--bg-secondary);
             border-radius: 16px;
             border: 1px solid var(--border-color);
+            padding: 2rem;
+            transition: all 0.3s;
         }
 
         .policy-card h3 {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid;
-        }
-
-        .policy-card.danger h3 {
-            border-color: #ef4444;
-            color: #ef4444;
-        }
-
-        .policy-card.warning h3 {
-            border-color: #eab308;
-            color: #eab308;
-        }
-
-        .policy-card.safe h3 {
-            border-color: #22c55e;
-            color: #22c55e;
         }
 
         .policy-card ul {
@@ -579,47 +684,18 @@
         }
 
         .policy-card ul li {
-            padding: 0.5rem 0;
             color: var(--text-secondary);
             font-size: 0.95rem;
+            padding: 0.4rem 0;
             padding-left: 1.5rem;
             position: relative;
         }
 
-        .policy-card.danger ul li::before {
-            content: "\00D7";
+        .policy-card ul li::before {
+            content: '•';
             position: absolute;
-            left: 0;
-            color: #ef4444;
-            font-weight: 700;
-        }
-
-        .policy-card.warning ul li::before {
-            content: "\25B2";
-            position: absolute;
-            left: 0;
-            color: #eab308;
-            font-size: 0.7rem;
-            top: 0.7rem;
-        }
-
-        .policy-card.safe ul li::before {
-            content: "\2713";
-            position: absolute;
-            left: 0;
-            color: #22c55e;
-            font-weight: 700;
-        }
-
-        .policy-note {
-            text-align: center;
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: rgba(239, 68, 68, 0.1);
-            border-radius: 12px;
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            font-weight: 500;
-            color: var(--text-primary);
+            left: 0.25rem;
+            color: var(--text-muted);
         }
 
         /* FAQ */
@@ -709,44 +785,19 @@
             padding: 0.5rem;
         }
 
-        /* Vault structure */
-        .vault-structure {
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-        }
-
-        .vault-structure pre {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            white-space: pre;
-            line-height: 1.6;
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.6s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-
         /* Responsive */
         @media (max-width: 768px) {
+            /* Use Cases Grid */
+            .use-cases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .use-cases-section {
+                margin-top: 2rem;
+                padding-top: 2rem;
+            }
+
+            /* Navigation */
             nav {
                 padding: 0.75rem 1rem;
             }
@@ -783,6 +834,7 @@
                 border-bottom: 1px solid var(--border-color);
             }
 
+            /* Hero */
             .hero {
                 padding: 5rem 1.25rem 2.5rem;
                 min-height: auto;
@@ -810,9 +862,9 @@
             .hero-cta .btn {
                 width: 100%;
                 text-align: center;
-                justify-content: center;
             }
 
+            /* Sections */
             section {
                 padding: 2.5rem 1rem;
             }
@@ -825,6 +877,7 @@
                 font-size: 0.95rem;
             }
 
+            /* Problems */
             .problems {
                 padding: 1.5rem;
             }
@@ -842,6 +895,7 @@
                 font-size: 1rem;
             }
 
+            /* Comparison Table - Stack on mobile */
             .comparison {
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
@@ -857,6 +911,7 @@
                 padding: 0.75rem 0.5rem;
             }
 
+            /* Features */
             .features-grid {
                 grid-template-columns: 1fr;
                 gap: 1rem;
@@ -866,9 +921,30 @@
                 padding: 1.5rem;
             }
 
+            /* Tools */
+            .tools-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .tool-card {
+                padding: 1.5rem;
+            }
+
+            /* Steps */
+            .steps {
+                gap: 1rem;
+            }
+
             .step {
                 flex-direction: column;
                 gap: 0.75rem;
+            }
+
+            .step-number {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
             }
 
             .step-content h3 {
@@ -879,6 +955,7 @@
                 font-size: 0.75rem;
             }
 
+            /* Code blocks */
             .code-block {
                 padding: 1rem;
                 margin: 0.75rem 0;
@@ -897,9 +974,18 @@
                 justify-content: center;
             }
 
+            /* Prompt grid */
             .prompt-grid {
                 grid-template-columns: 1fr;
                 gap: 1rem;
+            }
+
+            .prompt-card {
+                padding: 1rem;
+            }
+
+            .prompt-header h4 {
+                font-size: 1rem;
             }
 
             .prompt-content {
@@ -910,9 +996,15 @@
                 font-size: 0.8rem;
             }
 
+            /* Policy */
             .policy-grid {
                 grid-template-columns: 1fr;
                 gap: 1rem;
+            }
+
+            /* FAQ */
+            .faq-list {
+                gap: 0.75rem;
             }
 
             .faq-question {
@@ -928,6 +1020,7 @@
                 padding: 0 1rem 1rem;
             }
 
+            /* Footer */
             footer {
                 padding: 2.5rem 1.25rem;
             }
@@ -936,9 +1029,15 @@
                 font-size: 1.5rem;
             }
 
+            /* Buttons */
             .btn {
                 padding: 0.875rem 1.5rem;
                 font-size: 0.95rem;
+            }
+
+            /* Inline styles in setup section */
+            [style*="padding: 1.5rem"] {
+                padding: 1rem !important;
             }
 
             ol {
@@ -946,6 +1045,7 @@
             }
         }
 
+        /* Extra small screens */
         @media (max-width: 375px) {
             .hero h1 {
                 font-size: 1.75rem;
@@ -959,6 +1059,25 @@
                 font-size: 0.7rem;
             }
         }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
@@ -966,29 +1085,32 @@
     <div class="bg-glow"></div>
 
     <nav>
-        <div class="logo">Claude Code Guide</div>
-        <button class="mobile-menu-btn" aria-label="Menu">&#9776;</button>
+        <div class="logo">🤖 Claude Code Guide</div>
+        <button class="mobile-menu-btn" aria-label="メニューを開く">☰</button>
         <ul class="nav-links">
-            <li><a href="#top">Home</a></li>
-            <li><a href="#setup">Setup</a></li>
-            <li><a href="#usage">How to Use</a></li>
-            <li><a href="#policy">Policy</a></li>
+            <li><a href="#home">ホーム</a></li>
+            <li><a href="#problem">課題</a></li>
+            <li><a href="#features">できること</a></li>
+            <li><a href="#setup">セットアップ</a></li>
+            <li><a href="#prompts">使い方</a></li>
+            <li><a href="#policy">ポリシー</a></li>
             <li><a href="#faq">FAQ</a></li>
         </ul>
     </nav>
 
-    <header id="top" class="hero">
+    <header id="home" class="hero">
         <div class="hero-badge fade-in">AXIS Ad Division</div>
         <h1 class="fade-in delay-1">
             ChatGPTを卒業しよう<br>
             <span>Claude Code</span>
         </h1>
         <p class="hero-subtitle fade-in delay-2">
-            使うほど賢くなる、あなた専用のAIエージェント。<br>毎日の相棒として使い倒せ。
+            使うほど賢くなる、あなた専用のAIエージェント。<br>
+            Obsidian × Claude Code で「第二の脳」を構築する。
         </p>
         <div class="hero-cta fade-in delay-3">
             <a href="#setup" class="btn btn-primary">
-                セットアップを始める &rarr;
+                セットアップを始める →
             </a>
             <a href="vault-starter.zip" class="btn btn-secondary">
                 スターターキットをダウンロード
@@ -996,44 +1118,41 @@
         </div>
     </header>
 
-    <!-- Problem Section -->
     <section id="problem">
         <div class="problems">
             <div class="section-header">
-                <h2>こんな経験ありませんか？</h2>
+                <h2>😰 こんな経験ありませんか？</h2>
+                <p>これらはすべて「脳の容量不足」が原因です</p>
             </div>
             <div class="problem-grid">
                 <div class="problem-card">
-                    <div class="problem-icon">&#128269;</div>
+                    <div class="problem-icon">📝</div>
                     <h3>「あの情報どこだっけ...」</h3>
                     <p>Slack、メール、ドキュメント、手元のメモ...情報が散らばりすぎて探せない</p>
                 </div>
                 <div class="problem-card">
-                    <div class="problem-icon">&#128161;</div>
+                    <div class="problem-icon">🤔</div>
                     <h3>「前に考えたはずなのに...」</h3>
                     <p>過去の思考や判断の理由が思い出せない</p>
                 </div>
                 <div class="problem-card">
-                    <div class="problem-icon">&#128165;</div>
+                    <div class="problem-icon">😵</div>
                     <h3>「頭の中がパンクしそう...」</h3>
                     <p>管理すべき情報量が多すぎて処理しきれない</p>
                 </div>
                 <div class="problem-card">
-                    <div class="problem-icon">&#128172;</div>
+                    <div class="problem-icon">💭</div>
                     <h3>「この判断で合ってる？」</h3>
                     <p>壁打ち相手がいない、自分だけで考えても堂々巡り</p>
                 </div>
             </div>
-            <div class="problem-conclusion">
-                これらはすべて「脳の容量不足」が原因です
-            </div>
         </div>
     </section>
 
-    <!-- Solution Section -->
     <section id="solution">
         <div class="section-header">
-            <h2>解決策: Claude Code</h2>
+            <h2>💡 解決策：第二の脳</h2>
+            <p>外付けハードディスク + AI秘書 = あなた専用の思考拡張システム</p>
         </div>
 
         <div class="comparison">
@@ -1042,7 +1161,7 @@
                     <tr>
                         <th>観点</th>
                         <th>ChatGPT（単体）</th>
-                        <th>Claude Code</th>
+                        <th>第二の脳（Obsidian + Claude Code）</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1054,131 +1173,254 @@
                     <tr>
                         <td>情報の蓄積</td>
                         <td>会話が消える</td>
-                        <td class="highlight">メモリに蓄積し、次回に引き継ぐ</td>
+                        <td class="highlight">すべて構造化して永続保存</td>
+                    </tr>
+                    <tr>
+                        <td>検索性</td>
+                        <td>過去の回答を探せない</td>
+                        <td class="highlight">いつでも瞬時に検索可能</td>
                     </tr>
                     <tr>
                         <td>カスタマイズ</td>
                         <td>汎用的な回答</td>
-                        <td class="highlight">あなた専用にチューニング済み</td>
+                        <td class="highlight">あなた専用にチューニング</td>
                     </tr>
                     <tr>
-                        <td>作業の質</td>
+                        <td>活用範囲</td>
                         <td>質問→回答のみ</td>
-                        <td class="highlight">設計→計画→実行の構造で動く</td>
-                    </tr>
-                    <tr>
-                        <td>成長</td>
-                        <td>何度使っても同じ</td>
-                        <td class="highlight">使うほどあなたを理解し、精度が上がる</td>
+                        <td class="highlight">壁打ち・整理・作成・分析すべて</td>
                     </tr>
                 </tbody>
             </table>
         </div>
+    </section>
 
-        <div class="features-grid" style="margin-top: 4rem;">
+    <section id="features">
+        <div class="section-header">
+            <h2>🚀 これで何ができるようになるか</h2>
+        </div>
+        <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon">&#9998;</div>
+                <div class="feature-icon">🧠</div>
                 <h3>思考の外部化</h3>
                 <p>頭の中のモヤモヤを文章化してAIと壁打ち。判断の理由を記録し、「考えた」ことが資産として蓄積される。</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">&#128202;</div>
+                <div class="feature-icon">📊</div>
                 <h3>情報の一元管理</h3>
-                <p>目標→プロジェクト→タスクを一気通貫で管理。「あの情報どこだっけ」がなくなる。</p>
+                <p>目標 → プロジェクト → タスクを一気通貫で管理。「あの情報どこだっけ」がなくなる。</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">&#9889;</div>
+                <div class="feature-icon">🤖</div>
                 <h3>AIによる業務加速</h3>
                 <p>文字起こしからの情報整理、要件定義の壁打ち、過去の判断を踏まえた意思決定サポート。</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">&#128279;</div>
+                <div class="feature-icon">🔗</div>
                 <h3>知識の連結</h3>
                 <p>バラバラだった情報がつながり、新しいアイデアや気づきが生まれる。</p>
             </div>
         </div>
+
+        <!-- 具体的な使用シーン -->
+        <div class="use-cases-section">
+            <h3 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: var(--text-primary);">
+                🧠 脳の外付けHDD。思考を、無限に拡張する
+            </h3>
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <span class="use-case-icon">🔍</span>
+                        <span class="use-case-scene">情報検索</span>
+                    </div>
+                    <div class="use-case-situation">「あの話どこだっけ...」</div>
+                    <div class="use-case-action">
+                        <span class="label">💬 AIに言うだけ</span>
+                        <p>「〇〇について教えて」</p>
+                    </div>
+                    <div class="use-case-result">
+                        <span class="label">✨ 結果</span>
+                        <p>関連ノートを即座に提示</p>
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <span class="use-case-icon">📝</span>
+                        <span class="use-case-scene">MTG準備</span>
+                    </div>
+                    <div class="use-case-situation">会議前に論点を整理したい</div>
+                    <div class="use-case-action">
+                        <span class="label">💬 AIに言うだけ</span>
+                        <p>「今日のMTGの準備して」</p>
+                    </div>
+                    <div class="use-case-result">
+                        <span class="label">✨ 結果</span>
+                        <p>過去の決定事項・論点を要約</p>
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <span class="use-case-icon">📋</span>
+                        <span class="use-case-scene">議事録作成</span>
+                    </div>
+                    <div class="use-case-situation">MTG後の記録を残したい</div>
+                    <div class="use-case-action">
+                        <span class="label">💬 文字起こしをコピペするだけ</span>
+                        <p>自動収録アプリの文字起こしを貼り付け</p>
+                    </div>
+                    <div class="use-case-result">
+                        <span class="label">✨ 結果</span>
+                        <p>議事録を自動生成・整理して保存</p>
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <span class="use-case-icon">🤔</span>
+                        <span class="use-case-scene">壁打ち</span>
+                    </div>
+                    <div class="use-case-situation">考えを整理したい</div>
+                    <div class="use-case-action">
+                        <span class="label">💬 AIに言うだけ</span>
+                        <p>「〇〇について壁打ちしたい」</p>
+                    </div>
+                    <div class="use-case-result">
+                        <span class="label">✨ 結果</span>
+                        <p>質問しながら思考を整理</p>
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <span class="use-case-icon">📊</span>
+                        <span class="use-case-scene">報告書作成</span>
+                    </div>
+                    <div class="use-case-situation">週報・月報を書きたい</div>
+                    <div class="use-case-action">
+                        <span class="label">💬 AIに言うだけ</span>
+                        <p>「今週の振り返りを作って」</p>
+                    </div>
+                    <div class="use-case-result">
+                        <span class="label">✨ 結果</span>
+                        <p>進捗ログから自動生成</p>
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <span class="use-case-icon">💡</span>
+                        <span class="use-case-scene">アイデア整理</span>
+                    </div>
+                    <div class="use-case-situation">思いついたことを残したい</div>
+                    <div class="use-case-action">
+                        <span class="label">💬 AIに言うだけ</span>
+                        <p>「これメモして」</p>
+                    </div>
+                    <div class="use-case-result">
+                        <span class="label">✨ 結果</span>
+                        <p>適切な場所に自動で整理・保存</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Setup Section -->
+    <section id="tools">
+        <div class="section-header">
+            <h2>🛠️ 必要なツール</h2>
+            <p>2つだけ。シンプルに始められます</p>
+        </div>
+        <div class="tools-grid">
+            <div class="tool-card">
+                <div class="tool-icon">📁</div>
+                <h3>Obsidian</h3>
+                <div class="role">外付けハードディスク</div>
+                <p>情報を保管するノートアプリ。マークダウンで書けて、リンクで知識をつなげられる。</p>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon">🤖</div>
+                <h3>Claude Code</h3>
+                <div class="role">AI秘書</div>
+                <p>使うほど賢くなるAIエージェント。あなたのすべての情報を理解した上で、壁打ち・整理・作成・分析ができる。デスクトップアプリで簡単に使える。</p>
+            </div>
+        </div>
+    </section>
+
     <section id="setup">
         <div class="section-header">
-            <h2>セットアップ（約20分）</h2>
-            <p>順番通りに進めれば、すぐに使い始められます</p>
+            <h2>📝 セットアップ手順</h2>
+            <p>20分程度で完了します。ほとんどAIが自動で行います。</p>
         </div>
 
         <div class="steps">
-
-            <!-- STEP 1 -->
+            <!-- STEP 1: Max プランの契約 -->
             <div class="step">
                 <div class="step-content">
                     <h3>Max プランの契約</h3>
-                    <p>費用は会社負担。精算方法は西村に確認。</p>
-                    <span class="step-time">約5分</span>
+                    <p>費用は会社負担です。精算方法は西村に確認してください。</p>
+                    <span class="step-time">⏱️ 約5分</span>
 
                     <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
                         <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
                             <li style="margin-bottom: 0.75rem;">ブラウザで <a href="https://claude.ai" target="_blank" style="color: var(--accent-primary);">claude.ai</a> を開く</li>
-                            <li style="margin-bottom: 0.75rem;">「<strong style="color: var(--text-primary);">Sign up</strong>」（アカウント作成）をクリック</li>
+                            <li style="margin-bottom: 0.75rem;">「<strong style="color: var(--text-primary);">Sign up</strong>」をクリック</li>
                             <li style="margin-bottom: 0.75rem;">メールアドレスとパスワードを設定</li>
-                            <li style="margin-bottom: 0.75rem;">メール認証</li>
-                            <li style="margin-bottom: 0.75rem;">ログイン後、画面左下「<strong style="color: var(--text-primary);">Upgrade</strong>」をクリック</li>
-                            <li style="margin-bottom: 0.75rem;"><strong style="color: var(--text-primary);">Max（$100/月）</strong>を選択</li>
+                            <li style="margin-bottom: 0.75rem;">メール認証を完了する</li>
+                            <li style="margin-bottom: 0.75rem;">ログイン後、画面左下の「<strong style="color: var(--text-primary);">Upgrade</strong>」をクリック</li>
+                            <li style="margin-bottom: 0.75rem;">「<strong style="color: var(--text-primary);">Max</strong>」（$100/月）を選択</li>
                             <li style="margin-bottom: 0;">クレジットカード情報を入力して完了</li>
                         </ol>
-                    </div>
-
-                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px; border: 1px solid rgba(34, 197, 94, 0.3);">
-                        <strong style="color: #22c55e;">確認:</strong>
-                        <span style="color: var(--text-secondary);">画面左下にプラン名が「Max」と表示されていればOK</span>
+                        <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px; border: 1px solid rgba(34, 197, 94, 0.3);">
+                            <strong style="color: #22c55e;">✅ 確認：</strong><span style="color: var(--text-secondary);">画面左下に「Max」と表示されていればOK</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- STEP 2 -->
+            <!-- STEP 2: Claude Code デスクトップアプリのインストール -->
             <div class="step">
                 <div class="step-content">
-                    <h3>デスクトップアプリのインストール</h3>
-                    <p>ブラウザではなく、デスクトップアプリを使います。</p>
-                    <span class="step-time">約5分</span>
+                    <h3>Claude Code デスクトップアプリのインストール</h3>
+                    <p>Claude Code のデスクトップアプリをインストールします。</p>
+                    <span class="step-time">⏱️ 約5分</span>
 
                     <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
-                        <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">Mac の場合</p>
+                        <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">🍎 Mac の場合</p>
                         <ol style="margin: 0 0 1.5rem; padding-left: 1.5rem; color: var(--text-secondary);">
                             <li style="margin-bottom: 0.5rem;">ブラウザで <a href="https://claude.ai/download" target="_blank" style="color: var(--accent-primary);">claude.ai/download</a> を開く</li>
                             <li style="margin-bottom: 0.5rem;">「<strong style="color: var(--text-primary);">Download for Mac</strong>」をクリック</li>
                             <li style="margin-bottom: 0.5rem;">ダウンロードした .dmg ファイルを開く</li>
-                            <li style="margin-bottom: 0.5rem;">Claude をアプリケーションフォルダにドラッグ&amp;ドロップ</li>
+                            <li style="margin-bottom: 0.5rem;">Claude をアプリケーションフォルダにドラッグ</li>
                             <li style="margin-bottom: 0;">アプリケーションフォルダから Claude を起動</li>
                         </ol>
 
-                        <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">Windows の場合</p>
+                        <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">🪟 Windows の場合</p>
                         <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
                             <li style="margin-bottom: 0.5rem;">ブラウザで <a href="https://claude.ai/download" target="_blank" style="color: var(--accent-primary);">claude.ai/download</a> を開く</li>
                             <li style="margin-bottom: 0.5rem;">「<strong style="color: var(--text-primary);">Download for Windows</strong>」をクリック</li>
-                            <li style="margin-bottom: 0.5rem;">ダウンロードした .exe ファイルを実行</li>
+                            <li style="margin-bottom: 0.5rem;">ダウンロードした .exe を実行</li>
                             <li style="margin-bottom: 0.5rem;">インストールウィザードに従う</li>
-                            <li style="margin-bottom: 0;">デスクトップのショートカットから起動</li>
+                            <li style="margin-bottom: 0;">デスクトップから起動</li>
                         </ol>
-                    </div>
-
-                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px; border: 1px solid rgba(34, 197, 94, 0.3);">
-                        <strong style="color: #22c55e;">確認:</strong>
-                        <span style="color: var(--text-secondary);">Claude のチャット画面が表示されればOK</span>
+                        <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px; border: 1px solid rgba(34, 197, 94, 0.3);">
+                            <strong style="color: #22c55e;">✅ 確認：</strong><span style="color: var(--text-secondary);">Claude のチャット画面が表示されればOK</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- STEP 3 -->
+            <!-- STEP 3: CLAUDE.md の設定 -->
             <div class="step">
                 <div class="step-content">
-                    <h3>CLAUDE.md の設定</h3>
-                    <p>CLAUDE.md とは、Claudeが毎回自動で読み込む「永続的な指示書」。これを入れることで毎回同じことを説明しなくていい。使うほどメモリに知見が蓄積される。</p>
-                    <span class="step-time">約5分</span>
-
-                    <p style="margin-top: 1rem; color: var(--text-secondary);">以下をコピーして Claude に送信するだけ。</p>
+                    <h3>CLAUDE.md の設定 <span style="color: #22c55e; font-size: 0.8em;">🎉 ここからAIにお任せ！</span></h3>
+                    <p>以下をコピーして Claude Code に送信するだけ。AIが自動で設定します。</p>
+                    <span class="step-time">⏱️ 約5分</span>
 
                     <div class="code-block">
-                        <pre>以下の内容を ~/.claude/CLAUDE.md に保存して。ディレクトリがなければ作成して。保存後、概要を表示して。
+                        <pre style="font-size: 0.75rem; line-height: 1.5;">
+以下の内容を ~/.claude/CLAUDE.md に保存して。ディレクトリがなければ作成して。保存後、概要を表示して。
 
 ---
 
@@ -1273,236 +1515,175 @@ Claudeは使うほど賢くなる。ただし仕組みが必要。
 - 「合ってますか？」と聞いて「合ってます」と返ってきても、自分で確認する</pre>
                     </div>
 
-                    <p style="color: var(--text-secondary); margin-top: 1rem;">Claude が「保存しました」と返してきたら成功。次のメッセージを送って確認:</p>
-
-                    <div class="code-block">
-                        <pre>設定が読み込まれているか確認して。CLAUDE.md の内容を要約して見せて。</pre>
+                    <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px; border: 1px solid rgba(34, 197, 94, 0.3);">
+                        <strong style="color: #22c55e;">✅</strong><span style="color: var(--text-secondary);"> Claude が「保存しました」と返してきたら成功。</span>
                     </div>
                 </div>
             </div>
 
-            <!-- STEP 4 -->
+            <!-- STEP 4: Obsidian Vault の導入 -->
             <div class="step">
                 <div class="step-content">
                     <h3>Obsidian Vault の導入</h3>
-                    <p>広告運用のコンテキスト（講義1-9）とテンプレートが入ったVaultスターターキットをダウンロードして使う。</p>
-                    <span class="step-time">約5分</span>
+                    <p>広告運用のコンテキスト（講義1-9）とテンプレートが入ったスターターキットをダウンロードして使います。</p>
+                    <span class="step-time">⏱️ 約5分</span>
 
                     <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
                         <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
-                            <li style="margin-bottom: 0.75rem;">下のボタンからZIPをダウンロード</li>
-                            <li style="margin-bottom: 0.75rem;">ZIPを展開する</li>
-                            <li style="margin-bottom: 0.75rem;">Obsidianを開く（まだ入ってなければ <a href="https://obsidian.md" target="_blank" style="color: var(--accent-primary);">obsidian.md</a> からダウンロード）</li>
-                            <li style="margin-bottom: 0.75rem;">「<strong style="color: var(--text-primary);">Vaultを開く</strong>」→ 展開したフォルダを選択</li>
-                            <li style="margin-bottom: 0;">Vault が開けばOK</li>
+                            <li style="margin-bottom: 0.75rem;">下のボタンからZIPをダウンロード
+                                <div style="margin-top: 0.5rem;">
+                                    <a href="vault-starter.zip" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: var(--accent-gradient); color: white; border-radius: 8px; text-decoration: none; font-size: 0.9rem;">📦 vault-starter.zip をダウンロード</a>
+                                </div>
+                            </li>
+                            <li style="margin-bottom: 0;">ダウンロードしたら、Claude Code に以下を送信するだけ：</li>
                         </ol>
                     </div>
 
-                    <div style="margin-top: 1.5rem; text-align: center;">
-                        <a href="vault-starter.zip" class="btn btn-primary">Vault スターターキットをダウンロード</a>
+                    <div class="code-block" style="margin-top: 1rem;">
+                        <button class="copy-btn" onclick="copyCode(this)"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> コピー</button>
+                        <pre>~/Downloads/vault-starter.zip を展開して、Obsidian の Vault としてセットアップして。
+
+やること：
+1. ZIPを ~/Documents/Obsidian/MyVault に展開
+2. Obsidian がまだインストールされてなければインストール方法を教えて
+3. 展開後、Vault の中身（フォルダ構造、講義ファイル、テンプレート）を確認して報告して</pre>
                     </div>
 
-                    <p style="margin-top: 1.5rem; color: var(--text-secondary); font-weight: 500;">Vault 構造:</p>
-                    <div class="vault-structure">
-                        <pre>MyVault/
-├── 00_Inbox/          &#8212; メモ置き場
-├── 10_Goals/          &#8212; 目標管理
-├── 20_Context/        &#8212; 事業コンテキスト（広告講義1-9入り）
-├── 30_Projects/       &#8212; PJ管理
-├── 40_Knowledge/      &#8212; ナレッジ蓄積
-├── 50_Literature/     &#8212; 読書・記事メモ
-├── 60_Templates/      &#8212; テンプレート（16種類）
-├── 07_DailyLog/       &#8212; 日次ログ
-└── 08_MeetingLog/     &#8212; MTGログ</pre>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px; border: 1px solid rgba(34, 197, 94, 0.3);">
+                        <strong style="color: #22c55e;">💡 Claude が全部やってくれる</strong><br>
+                        <span style="color: var(--text-secondary);">ZIPの展開、フォルダ配置、中身の確認まで自動。あなたは最後にObsidianを開いて「Vaultを開く」から ~/Documents/Obsidian/MyVault を選ぶだけ。</span>
+                    </div>
+
+                    <div class="code-block" style="margin-top: 1.5rem;">
+                        <pre style="font-size: 0.8rem; line-height: 1.6;">
+vault-starter/
+├── 00_Inbox/          — メモ置き場
+├── 10_Goals/          — 目標管理
+├── 20_Context/        — 事業コンテキスト（広告講義1-9入り）
+│   └── AXIS/Ads/     — アドアフィ基礎〜記事LP構成
+├── 30_Projects/       — PJ管理
+├── 40_Knowledge/      — ナレッジ蓄積
+├── 50_Literature/     — 読書・記事メモ
+├── 60_Templates/      — テンプレート（16種類入り）
+├── 07_DailyLog/       — 日次ログ
+└── 08_MeetingLog/     — MTGログ</pre>
                     </div>
                 </div>
             </div>
 
-            <!-- STEP 5 -->
+            <!-- STEP 5: 毎日使う -->
             <div class="step">
                 <div class="step-content">
                     <h3>毎日使う（これが一番大事）</h3>
-                    <p>セットアップしたら終わりではない。毎日使うことで Claude はあなた専用のAIに進化する。</p>
+                    <p>セットアップしたら終わりではない。ChatGPTに聞いてたことを、全部 Claude Code に聞く。毎日使うことで Claude はあなた専用のAIに進化する。</p>
 
-                    <p style="margin-top: 1.5rem; color: var(--text-primary); font-weight: 500; font-size: 1.1rem;">体験プロンプト 3つ</p>
-
-                    <div class="prompt-grid" style="margin-top: 1rem;">
-                        <div class="prompt-card">
-                            <div class="prompt-header">
-                                <span class="icon">1</span>
-                                <h4>「設計→計画→実行」を体感</h4>
-                            </div>
-                            <div class="prompt-content">
-                                <pre>来週のチームMTGのアジェンダを作りたい。
-テーマは「Q4の振り返りと来期の目標設定」。
-参加者は5人で、時間は1時間。</pre>
-                                <div class="prompt-note">
-                                    Claude がいきなりアジェンダを出すのではなく、まず確認の質問をしてくるはず。これが「設計→計画→実行」。
-                                </div>
-                            </div>
+                    <div style="margin-top: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div style="padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border: 1px solid var(--border-color);">
+                            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📝</div>
+                            <div style="font-weight: 500; color: var(--text-primary); margin-bottom: 0.5rem;">MTGの後</div>
+                            <div style="color: var(--text-secondary); font-size: 0.9rem;">「この文字起こしを議事録にまとめて」</div>
                         </div>
-
-                        <div class="prompt-card">
-                            <div class="prompt-header">
-                                <span class="icon">2</span>
-                                <h4>指摘してくれるかテスト</h4>
-                            </div>
-                            <div class="prompt-content">
-                                <pre>以下の文章をクライアントに送りたい。問題ないかチェックして。
-
-お世話になっております。
-先日のMTGで決まった件、進めておきます。
-詳細は追ってご連絡します。</pre>
-                                <div class="prompt-note">
-                                    「何が決まったか不明」「いつ連絡するか不明」等の指摘が返ってくるはず。
-                                </div>
-                            </div>
+                        <div style="padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border: 1px solid var(--border-color);">
+                            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🤔</div>
+                            <div style="font-weight: 500; color: var(--text-primary); margin-bottom: 0.5rem;">判断に迷った時</div>
+                            <div style="color: var(--text-secondary); font-size: 0.9rem;">「〇〇について壁打ちしたい。選択肢を整理して」</div>
                         </div>
-
-                        <div class="prompt-card">
-                            <div class="prompt-header">
-                                <span class="icon">3</span>
-                                <h4>メモリの蓄積を確認</h4>
-                            </div>
-                            <div class="prompt-content">
-                                <pre>自分の名前と所属と担当業務を覚えてほしい。
-名前: （あなたの名前）
-所属: （あなたの部署）
-担当: （あなたの業務内容）</pre>
-                                <div class="prompt-note">
-                                    次回の会話で「自分のこと覚えてる？」と聞いてみる。
-                                </div>
-                            </div>
+                        <div style="padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border: 1px solid var(--border-color);">
+                            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📊</div>
+                            <div style="font-weight: 500; color: var(--text-primary); margin-bottom: 0.5rem;">週末に</div>
+                            <div style="color: var(--text-secondary); font-size: 0.9rem;">「今週の振り返りを作って」</div>
                         </div>
                     </div>
                 </div>
             </div>
-
-        </div><!-- /steps -->
+        </div>
     </section>
 
-    <!-- Daily Usage Section -->
-    <section id="usage">
+    <section id="prompts">
         <div class="section-header">
-            <h2>日々の使い方</h2>
-            <p>ChatGPT に聞いてたことを、全部 Claude に聞け</p>
+            <h2>🎮 基本的な使い方</h2>
+            <p>Claude Code のデスクトップアプリを開いて、自然な日本語で話しかけるだけ</p>
         </div>
 
         <div class="prompt-grid">
             <div class="prompt-card">
                 <div class="prompt-header">
-                    <span class="icon">&#128221;</span>
-                    <h4>議事録の整理</h4>
+                    <span class="icon">📥</span>
+                    <h4>メモを追加する</h4>
                 </div>
                 <div class="prompt-content">
-                    <pre>以下のMTGメモを構造化して。
-
-## フォーマット
-- 日時・参加者
-- アジェンダ（話した内容の要約）
-- 決定事項（誰が何をいつまでにやるか）
-- 未決事項（持ち越し、要検討）
-- 次回アクション
-
-## メモ:
-（ここにメモを貼る）</pre>
+                    <pre>以下の内容をInboxに追加してください：
+（ここにメモの内容をペースト）</pre>
                 </div>
             </div>
 
             <div class="prompt-card">
                 <div class="prompt-header">
-                    <span class="icon">&#9993;</span>
-                    <h4>メール・チャットの下書き</h4>
+                    <span class="icon">🧹</span>
+                    <h4>Inboxを整理する</h4>
                 </div>
                 <div class="prompt-content">
-                    <pre>以下の条件でメールの下書きを作って。
-- 宛先: クライアント（A社の田中さん）
-- 目的: 来月のキャンペーン提案のMTG日程調整
-- トーン: ビジネスだがカジュアル寄り
-- 含めたい情報: 候補日3つ、所要時間1時間</pre>
+                    <pre>00_Inboxの中身を確認して、整理を手伝ってください。
+各ファイルがどのフォルダに移動すべきか提案してください。</pre>
                 </div>
             </div>
 
             <div class="prompt-card">
                 <div class="prompt-header">
-                    <span class="icon">&#128172;</span>
-                    <h4>壁打ち・アイデア出し</h4>
+                    <span class="icon">🎯</span>
+                    <h4>目標を設定する</h4>
                 </div>
                 <div class="prompt-content">
-                    <pre>壁打ちに付き合ってほしい。
-## テーマ
-（解決したいこと）
-## 背景
-（なぜこれを考えているのか）
-## 自分の仮説
-（今のところの考え）
-## 求めること
-- 仮説の穴を指摘してほしい
-- 別の視点からのアプローチを出してほしい</pre>
+                    <pre>今月の目標を設定したいです。
+10_Goals に月次目標のファイルを作成してください。</pre>
                 </div>
             </div>
 
             <div class="prompt-card">
                 <div class="prompt-header">
-                    <span class="icon">&#128202;</span>
-                    <h4>レポート作成</h4>
+                    <span class="icon">🤔</span>
+                    <h4>壁打ちする</h4>
                 </div>
                 <div class="prompt-content">
-                    <pre>以下のデータから月次レポートのサマリーを作成して。
-- 読む人: 上長（数字に強い。結論ファースト好み）
-- 含める内容: 前月比、目標達成率、特筆すべきトピック3つ
-- フォーマット: 箇条書き。1ページに収まる分量
-
-## データ:
-（ここにデータを貼る）</pre>
+                    <pre>〇〇について壁打ちしたいです。
+私の考えは以下なのですが、問題点があれば指摘してください：
+（あなたの考えを書く）</pre>
                 </div>
             </div>
 
             <div class="prompt-card">
                 <div class="prompt-header">
-                    <span class="icon">&#9998;</span>
-                    <h4>文章の添削</h4>
+                    <span class="icon">🔍</span>
+                    <h4>情報を探す</h4>
                 </div>
                 <div class="prompt-content">
-                    <pre>以下の文章を添削して。
-- 読む人: （誰に向けた文章か）
-- 目的: （情報共有 / 行動促進）
-- 改善してほしいポイント: （簡潔さ / 説得力）
-
-## 原文:
-（ここに文章を貼る）</pre>
+                    <pre>過去に〇〇について考えたことがあったと思います。
+関連するファイルを探してください。</pre>
                 </div>
             </div>
 
             <div class="prompt-card">
                 <div class="prompt-header">
-                    <span class="icon">&#128270;</span>
-                    <h4>情報の調査・整理</h4>
+                    <span class="icon">❓</span>
+                    <h4>困った時</h4>
                 </div>
                 <div class="prompt-content">
-                    <pre>以下について調査して整理してほしい。
-## 調べたいこと
-（具体的に何を知りたいか）
-## 背景
-（なぜ調べているのか）
-## 出力フォーマット
-- 要点を箇条書き3-5個
-- メリデメ比較表も</pre>
+                    <pre>AIに何を聞けばいいかわかりません。
+私の状況は〇〇なのですが、どんな質問をすれば良いですか？</pre>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Policy Section -->
     <section id="policy">
         <div class="section-header">
-            <h2>利用ポリシー（必読）</h2>
+            <h2>🔒 利用ポリシー（必読）</h2>
             <p>Claude に入力する = 社外に出す</p>
         </div>
 
         <div class="policy-grid">
-            <div class="policy-card danger">
-                <h3>絶対NG（入力禁止）</h3>
+            <div class="policy-card" style="border-left: 4px solid #ef4444;">
+                <h3 style="color: #ef4444;">🚫 絶対NG（入力禁止）</h3>
                 <ul>
                     <li>顧客の個人情報（氏名・住所・電話番号）</li>
                     <li>パスワード・APIキー・アクセストークン</li>
@@ -1512,17 +1693,17 @@ Claudeは使うほど賢くなる。ただし仕組みが必要。
                 </ul>
             </div>
 
-            <div class="policy-card warning">
-                <h3>要注意（匿名化すればOK）</h3>
+            <div class="policy-card" style="border-left: 4px solid #eab308;">
+                <h3 style="color: #eab308;">⚠️ 要注意（匿名化すればOK）</h3>
                 <ul>
-                    <li>売上データ → 「A社の売上が約X万円」に置換</li>
-                    <li>社内プロセスの相談 → 金額を丸める、人名を伏せる</li>
+                    <li>売上データ → 具体額を丸める、社名を伏せる</li>
+                    <li>社内プロセスの相談 → 人名を伏せる</li>
                     <li>クライアント案件 → 社名を「A社」に置き換え</li>
                 </ul>
             </div>
 
-            <div class="policy-card safe">
-                <h3>OK（そのまま入力可）</h3>
+            <div class="policy-card" style="border-left: 4px solid #22c55e;">
+                <h3 style="color: #22c55e;">✅ OK（そのまま入力可）</h3>
                 <ul>
                     <li>一般的な業務相談</li>
                     <li>公開情報の整理・要約</li>
@@ -1532,58 +1713,60 @@ Claudeは使うほど賢くなる。ただし仕組みが必要。
             </div>
         </div>
 
-        <div class="policy-note">
-            迷ったら「入力しない」がデフォルト。判断に迷う時点でリスクがある。
+        <div style="text-align: center; margin-top: 2rem; padding: 1rem; background: var(--bg-secondary); border-radius: 12px; border: 1px solid var(--border-color);">
+            <p style="color: var(--text-secondary); font-size: 1rem; margin: 0;"><strong style="color: var(--text-primary);">迷ったら「入力しない」がデフォルト。</strong></p>
         </div>
     </section>
 
-    <!-- FAQ Section -->
     <section id="faq">
         <div class="section-header">
-            <h2>よくある質問</h2>
+            <h2>❓ よくある質問</h2>
         </div>
         <div class="faq-list">
             <div class="faq-item">
                 <div class="faq-question">Claude が嘘をついた / 間違った情報を出した</div>
                 <div class="faq-answer">
-                    <p>「ハルシネーション」と呼ばれるAIの特性です。「根拠も一緒に出して」と指示してください。数字・日付・人名は必ず自分で裏取りしてください。</p>
+                    <p>「ハルシネーション」と呼ばれるAIの特性です。「根拠も一緒に出して」と指示してください。数字・日付・人名は必ず自分で裏取りしましょう。</p>
                 </div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">会話をリセットしたいときは？</div>
                 <div class="faq-answer">
-                    <p>/clear と入力してください。会話履歴がリセットされて新しいセッションになります。メモリはリセットされません。</p>
+                    <p><code style="background: var(--bg-tertiary); padding: 0.2rem 0.5rem; border-radius: 4px;">/clear</code> と入力してください。会話履歴がリセットされますが、メモリ（CLAUDE.md）はリセットされません。</p>
                 </div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">Claude が長すぎる回答をする</div>
                 <div class="faq-answer">
-                    <p>「もっと簡潔に。箇条書き3行以内で」と指示してください。指摘すればメモリに残り、次回から改善されます。</p>
+                    <p>「もっと簡潔に。箇条書き3行以内で」と指示してください。指摘するとメモリに残り、次回から改善されます。</p>
                 </div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">機密情報を入力してしまった</div>
                 <div class="faq-answer">
-                    <p>すぐに該当する会話を削除してください。その後、西村に報告してください。</p>
+                    <p>すぐに該当する会話を削除してください。その後、西村に報告をお願いします。</p>
                 </div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">結局 ChatGPT と何が違うの？</div>
                 <div class="faq-answer">
-                    <p>ChatGPTは毎回ゼロから。Claude Code は前回の続きから始まります。使うほどあなた専用のAIに進化します。CLAUDE.md + メモリが決定的な違いです。</p>
+                    <p>ChatGPTは毎回ゼロから。Claude Code は前回の続きから始まります。CLAUDE.md + メモリが決定的な違いです。使うほどあなた専用のAIに進化します。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-cta">
             <h2>今すぐ始めよう</h2>
-            <p>困ったら → まずClaude自身に聞く → それでもダメなら西村に聞く</p>
-            <a href="#setup" class="btn btn-primary">セットアップを始める &rarr;</a>
+            <p>Claude Code は使えば使うほど、あなた専用にカスタマイズされ、より賢くなっていきます。</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#setup" class="btn btn-primary">セットアップを始める →</a>
+                <a href="vault-starter.zip" class="btn btn-secondary">スターターキットをダウンロード</a>
+            </div>
         </div>
         <div class="footer-info">
+            <p>困ったら → まず Claude 自身に聞く → それでもダメなら西村に聞く</p>
             <p style="margin-top: 1rem; color: var(--text-muted);">AXIS アド事業部 | 2026</p>
         </div>
     </footer>
@@ -1595,13 +1778,14 @@ Claudeは使うほど賢くなる。ただし仕組みが必要。
 
         mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('open');
-            mobileMenuBtn.innerHTML = navLinks.classList.contains('open') ? '&#10005;' : '&#9776;';
+            mobileMenuBtn.textContent = navLinks.classList.contains('open') ? '✕' : '☰';
         });
 
+        // Close menu when clicking a link
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('open');
-                mobileMenuBtn.innerHTML = '&#9776;';
+                mobileMenuBtn.textContent = '☰';
             });
         });
 
@@ -1627,7 +1811,7 @@ Claudeは使うほど賢くなる。ただし仕組みが必要。
             });
         });
 
-        // Copy Button Icons
+        // Copy Button for Code Blocks
         const copyIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9.75a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" />
         </svg>`;
@@ -1636,19 +1820,22 @@ Claudeは使うほど賢くなる。ただし仕組みが必要。
             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
         </svg>`;
 
-        function addCopyButton(container, getText) {
+        document.querySelectorAll('.code-block').forEach(block => {
             const button = document.createElement('button');
             button.className = 'copy-btn';
-            button.innerHTML = copyIcon + 'Copy';
+            button.innerHTML = copyIcon + 'コピー';
 
             button.addEventListener('click', async () => {
-                const text = getText();
+                const pre = block.querySelector('pre');
+                const text = pre.textContent.trim();
+
                 try {
                     await navigator.clipboard.writeText(text);
-                    button.innerHTML = checkIcon + 'Copied!';
+                    button.innerHTML = checkIcon + 'コピー完了！';
                     button.classList.add('copied');
+
                     setTimeout(() => {
-                        button.innerHTML = copyIcon + 'Copy';
+                        button.innerHTML = copyIcon + 'コピー';
                         button.classList.remove('copied');
                     }, 2000);
                 } catch (err) {
@@ -1656,32 +1843,31 @@ Claudeは使うほど賢くなる。ただし仕組みが必要。
                 }
             });
 
-            container.appendChild(button);
-        }
-
-        // Add copy buttons to code blocks
-        document.querySelectorAll('.code-block').forEach(block => {
-            addCopyButton(block, () => block.querySelector('pre').textContent.trim());
+            block.appendChild(button);
         });
 
-        // Add copy buttons to prompt cards
+        // Also add copy buttons to prompt cards
         document.querySelectorAll('.prompt-content').forEach(content => {
-            content.style.position = 'relative';
+            const wrapper = document.createElement('div');
+            wrapper.style.position = 'relative';
+
             const button = document.createElement('button');
             button.className = 'copy-btn';
             button.style.top = '0.5rem';
             button.style.right = '0.5rem';
-            button.innerHTML = copyIcon + 'Copy';
+            button.innerHTML = copyIcon + 'コピー';
 
             button.addEventListener('click', async () => {
                 const pre = content.querySelector('pre');
                 const text = pre.textContent.trim();
+
                 try {
                     await navigator.clipboard.writeText(text);
-                    button.innerHTML = checkIcon + 'Copied!';
+                    button.innerHTML = checkIcon + 'コピー完了！';
                     button.classList.add('copied');
+
                     setTimeout(() => {
-                        button.innerHTML = copyIcon + 'Copy';
+                        button.innerHTML = copyIcon + 'コピー';
                         button.classList.remove('copied');
                     }, 2000);
                 } catch (err) {
@@ -1689,6 +1875,7 @@ Claudeは使うほど賢くなる。ただし仕組みが必要。
                 }
             });
 
+            content.style.position = 'relative';
             content.appendChild(button);
         });
     </script>

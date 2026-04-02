@@ -1351,7 +1351,7 @@
     <section id="setup">
         <div class="section-header">
             <h2>📝 セットアップ手順</h2>
-            <p>20分程度で完了します。ほとんどAIが自動で行います。</p>
+            <p>約40分で完了します。ほとんどAIが自動で行います。</p>
         </div>
 
         <div class="steps">
@@ -1521,10 +1521,34 @@ Claudeは使うほど賢くなる。ただし仕組みが必要。
                 </div>
             </div>
 
-            <!-- STEP 4: Obsidian Vault の導入 -->
+            <!-- STEP 4: Obsidian のインストール -->
             <div class="step">
                 <div class="step-content">
-                    <h3>Obsidian Vault の導入</h3>
+                    <h3>Obsidian のインストール</h3>
+                    <p>情報を保管するノートアプリをインストールします。</p>
+                    <span class="step-time">⏱️ 約5分</span>
+
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
+                        <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 0.75rem;">ブラウザで <a href="https://obsidian.md" target="_blank" style="color: var(--accent-primary);">https://obsidian.md</a> にアクセス</li>
+                            <li style="margin-bottom: 0.75rem;">画面中央の「<strong style="color: var(--text-primary);">Get Obsidian for free</strong>」ボタンをクリック</li>
+                            <li style="margin-bottom: 0.75rem;">あなたのパソコンに合わせてダウンロード
+                                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                                    <li>Macの場合：「Download for macOS」</li>
+                                    <li>Windowsの場合：「Download for Windows」</li>
+                                </ul>
+                            </li>
+                            <li style="margin-bottom: 0.75rem;">ダウンロードしたファイルをダブルクリックして開く</li>
+                            <li style="margin-bottom: 0;">画面の指示に従ってインストール（「続ける」「インストール」を押していくだけ）</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 5: Vault スターターキットの導入 -->
+            <div class="step">
+                <div class="step-content">
+                    <h3>Vault スターターキットの導入</h3>
                     <p>広告運用のコンテキスト（講義1-9）とテンプレートが入ったスターターキットをダウンロードして使います。</p>
                     <span class="step-time">⏱️ 約5分</span>
 
@@ -1571,7 +1595,99 @@ vault-starter/
                 </div>
             </div>
 
-            <!-- STEP 5: 毎日使う -->
+            <!-- STEP 6: GitHub アカウントの作成 -->
+            <div class="step">
+                <div class="step-content">
+                    <h3>GitHub アカウントの作成</h3>
+                    <p>クラウドにバックアップするためのGitHubアカウントを作成します。</p>
+                    <span class="step-time">⏱️ 約5分</span>
+
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
+                        <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 0.75rem;">ブラウザで <a href="https://github.com" target="_blank" style="color: var(--accent-primary);">https://github.com</a> にアクセス</li>
+                            <li style="margin-bottom: 0.75rem;">画面右上の「<strong style="color: var(--text-primary);">Sign up</strong>」をクリック</li>
+                            <li style="margin-bottom: 0.75rem;">以下を入力：
+                                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                                    <li><strong>メールアドレス</strong>：会社のメールでOK</li>
+                                    <li><strong>パスワード</strong>：8文字以上、数字と小文字を含む</li>
+                                    <li><strong>ユーザー名</strong>：半角英数字（例：yamada-taro）</li>
+                                </ul>
+                            </li>
+                            <li style="margin-bottom: 0.75rem;">「Create account」をクリック</li>
+                            <li style="margin-bottom: 0;">メールに届いた認証コードを入力して完了！</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 7: アクセストークンの取得 -->
+            <div class="step">
+                <div class="step-content">
+                    <h3>アクセストークンの取得 <span style="color: #ef4444; font-size: 0.8em;">⚠️ 重要</span></h3>
+                    <p>AIがGitHubを操作するためのトークンを取得します。<strong style="color: var(--accent-primary);">このステップだけは手動で行う必要があります。</strong></p>
+                    <span class="step-time">⏱️ 約5分</span>
+
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid #ef4444;">
+                        <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 0.75rem;">GitHubにログインした状態で、以下のURLにアクセス：<br>
+                                <a href="https://github.com/settings/tokens/new" target="_blank" style="color: var(--accent-primary); word-break: break-all;">https://github.com/settings/tokens/new</a>
+                            </li>
+                            <li style="margin-bottom: 0.75rem;">以下を入力：
+                                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                                    <li><strong>Note</strong>: <code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">MyVault-ClaudeCode</code>（何でもOK、識別用）</li>
+                                    <li><strong>Expiration</strong>: 「<strong style="color: var(--text-primary);">No expiration</strong>」を選択（無期限）</li>
+                                    <li><strong>Select scopes</strong>: 以下にチェック ✅
+                                        <ul style="margin-top: 0.25rem;">
+                                            <li><code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">repo</code>（一番上、すべての repo 権限）</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li style="margin-bottom: 0.75rem;">画面下部の「<strong style="color: var(--text-primary);">Generate token</strong>」をクリック</li>
+                            <li style="margin-bottom: 0; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.3);">
+                                <strong style="color: #ef4444;">⚠️ 重要：</strong>表示されたトークン（<code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">ghp_</code> で始まる文字列）をコピーして安全な場所に保存<br>
+                                <span style="font-size: 0.9em; color: var(--text-muted);">※このトークンは<strong>一度しか表示されません</strong>。メモ帳などに一時的に貼り付けておいてください。</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 8: Git初期設定とGitHub連携 -->
+            <div class="step">
+                <div class="step-content">
+                    <h3>Git初期設定と GitHub 連携 <span style="color: #22c55e; font-size: 0.8em;">🎉 AIにお任せ！</span></h3>
+                    <p>以下をコピーして Claude Code に送信するだけ。AIが自動でGit設定とGitHub連携を行います。</p>
+                    <span class="step-time">⏱️ 約5分</span>
+
+                    <div class="code-block" style="margin-top: 1rem;">
+                        <button class="copy-btn" onclick="copyCode(this)"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> コピー</button>
+                        <pre>Obsidian Vault を GitHub にバックアップしたい。以下の情報で Git 初期設定と GitHub 連携をして。
+
+- GitHubユーザー名: （ここにあなたのユーザー名を入力）
+- メールアドレス: （ここにGitHubに登録したメールを入力）
+- アクセストークン: （ここに STEP 7 で取得したトークンを貼り付け）
+- リポジトリ名: MyVault
+- リポジトリの公開設定: private（非公開）
+- Vaultの場所: ~/Documents/Obsidian/MyVault
+
+やること：
+1. Git の初期設定（ユーザー名、メール）
+2. Vault フォルダで git init
+3. GitHub にプライベートリポジトリを作成
+4. リモートリポジトリに初回プッシュ
+5. .gitignore に .obsidian/workspace.json を追加
+6. 設定完了後、正しく連携されているか確認して報告</pre>
+                    </div>
+
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px; border: 1px solid rgba(34, 197, 94, 0.3);">
+                        <strong style="color: #22c55e;">💡</strong>
+                        <span style="color: var(--text-secondary);"> Claude の指示に従ってください。途中で「実行してよいですか？」と確認されたら「はい」と答えてください。</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 9: 毎日使う -->
             <div class="step">
                 <div class="step-content">
                     <h3>毎日使う（これが一番大事）</h3>

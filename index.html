@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code セットアップガイド | AXIS Ad Division</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --accent-primary: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-color: #2d2d3a;
+            --card-bg: rgba(26, 26, 37, 0.8);
+            --glow: 0 0 40px rgba(99, 102, 241, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Background Effects */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .bg-glow {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 70%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-5%, -5%); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            max-width: 900px;
+        }
+
+        .hero h1 span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: white;
+            box-shadow: var(--glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 60px rgba(99, 102, 241, 0.5);
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-secondary);
+            border-color: var(--accent-primary);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Problem Section */
+        .problems {
+            background: var(--bg-secondary);
+            border-radius: 24px;
+            padding: 4rem;
+            margin: 4rem auto;
+            max-width: 1000px;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            padding: 2rem;
+            background: var(--bg-tertiary);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .problem-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+        }
+
+        .problem-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .problem-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .problem-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .problem-conclusion {
+            text-align: center;
+            margin-top: 2.5rem;
+            padding: 1.5rem;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--accent-primary);
+        }
+
+        /* Comparison Table */
+        .comparison {
+            overflow-x: auto;
+            margin: 3rem 0;
+        }
+
+        .comparison table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .comparison th,
+        .comparison td {
+            padding: 1.25rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .comparison th {
+            background: var(--bg-tertiary);
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .comparison td:first-child {
+            font-weight: 500;
+        }
+
+        .comparison tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison .highlight {
+            color: var(--accent-primary);
+            font-weight: 500;
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            padding: 2.5rem;
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent-primary);
+            box-shadow: var(--glow);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-gradient);
+            border-radius: 16px;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+        }
+
+        /* Steps */
+        .steps {
+            counter-reset: step;
+        }
+
+        .step {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .step::before {
+            counter-increment: step;
+            content: "STEP " counter(step);
+            position: absolute;
+            top: -12px;
+            left: 24px;
+            background: var(--accent-gradient);
+            padding: 0.25rem 1rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .step-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .step-time {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-block pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Copy Button */
+        .copy-btn {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-family: 'Noto Sans JP', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .copy-btn:hover {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            color: white;
+        }
+
+        .copy-btn.copied {
+            background: #22c55e;
+            border-color: #22c55e;
+            color: white;
+        }
+
+        .copy-btn svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Prompt Examples */
+        .prompt-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .prompt-card {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .prompt-header {
+            padding: 1rem 1.5rem;
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .prompt-header .icon {
+            font-size: 1.25rem;
+        }
+
+        .prompt-header h4 {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .prompt-content {
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .prompt-content pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+
+        .prompt-note {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Policy Cards */
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .policy-card {
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .policy-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid;
+        }
+
+        .policy-card.danger h3 {
+            border-color: #ef4444;
+            color: #ef4444;
+        }
+
+        .policy-card.warning h3 {
+            border-color: #eab308;
+            color: #eab308;
+        }
+
+        .policy-card.safe h3 {
+            border-color: #22c55e;
+            color: #22c55e;
+        }
+
+        .policy-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .policy-card ul li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .policy-card.danger ul li::before {
+            content: "\00D7";
+            position: absolute;
+            left: 0;
+            color: #ef4444;
+            font-weight: 700;
+        }
+
+        .policy-card.warning ul li::before {
+            content: "\25B2";
+            position: absolute;
+            left: 0;
+            color: #eab308;
+            font-size: 0.7rem;
+            top: 0.7rem;
+        }
+
+        .policy-card.safe ul li::before {
+            content: "\2713";
+            position: absolute;
+            left: 0;
+            color: #22c55e;
+            font-weight: 700;
+        }
+
+        .policy-note {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* FAQ */
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.open .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item.open .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-cta {
+            margin-bottom: 2rem;
+        }
+
+        .footer-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-cta p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .footer-info {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Vault structure */
+        .vault-structure {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .vault-structure pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            white-space: pre;
+            line-height: 1.6;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 0.75rem 1rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 60px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: #0a0a0f;
+                flex-direction: column;
+                padding: 0;
+                z-index: 1000;
+                overflow-y: auto;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 0;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1rem;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .hero {
+                padding: 5rem 1.25rem 2.5rem;
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+                line-height: 1.3;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-badge {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .hero-cta .btn {
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+            }
+
+            section {
+                padding: 2.5rem 1rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .section-header p {
+                font-size: 0.95rem;
+            }
+
+            .problems {
+                padding: 1.5rem;
+            }
+
+            .problem-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .problem-card {
+                padding: 1.25rem;
+            }
+
+            .problem-card h3 {
+                font-size: 1rem;
+            }
+
+            .comparison {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .comparison table {
+                min-width: 100%;
+                font-size: 0.85rem;
+            }
+
+            .comparison th,
+            .comparison td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+
+            .step {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .step-content h3 {
+                font-size: 1.1rem;
+            }
+
+            .step-time {
+                font-size: 0.75rem;
+            }
+
+            .code-block {
+                padding: 1rem;
+                margin: 0.75rem 0;
+            }
+
+            .code-block pre {
+                font-size: 0.75rem;
+            }
+
+            .copy-btn {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-top: 0.75rem;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .prompt-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .prompt-content {
+                padding: 0.75rem;
+            }
+
+            .prompt-content pre {
+                font-size: 0.8rem;
+            }
+
+            .policy-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .faq-question {
+                padding: 1rem;
+                font-size: 0.95rem;
+            }
+
+            .faq-answer {
+                padding: 0 1rem;
+            }
+
+            .faq-item.open .faq-answer {
+                padding: 0 1rem 1rem;
+            }
+
+            footer {
+                padding: 2.5rem 1.25rem;
+            }
+
+            .footer-cta h2 {
+                font-size: 1.5rem;
+            }
+
+            .btn {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.95rem;
+            }
+
+            ol {
+                padding-left: 1.25rem !important;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.3rem;
+            }
+
+            .code-block pre {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+
+    <nav>
+        <div class="logo">Claude Code Guide</div>
+        <button class="mobile-menu-btn" aria-label="Menu">&#9776;</button>
+        <ul class="nav-links">
+            <li><a href="#top">Home</a></li>
+            <li><a href="#setup">Setup</a></li>
+            <li><a href="#usage">How to Use</a></li>
+            <li><a href="#policy">Policy</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+    </nav>
+
+    <header id="top" class="hero">
+        <div class="hero-badge fade-in">AXIS Ad Division</div>
+        <h1 class="fade-in delay-1">
+            ChatGPTを卒業しよう<br>
+            <span>Claude Code</span>
+        </h1>
+        <p class="hero-subtitle fade-in delay-2">
+            使うほど賢くなる、あなた専用のAIエージェント。<br>毎日の相棒として使い倒せ。
+        </p>
+        <div class="hero-cta fade-in delay-3">
+            <a href="#setup" class="btn btn-primary">
+                セットアップを始める &rarr;
+            </a>
+            <a href="vault-starter.zip" class="btn btn-secondary">
+                スターターキットをダウンロード
+            </a>
+        </div>
+    </header>
+
+    <!-- Problem Section -->
+    <section id="problem">
+        <div class="problems">
+            <div class="section-header">
+                <h2>こんな経験ありませんか？</h2>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">&#128269;</div>
+                    <h3>「あの情報どこだっけ...」</h3>
+                    <p>Slack、メール、ドキュメント、手元のメモ...情報が散らばりすぎて探せない</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">&#128161;</div>
+                    <h3>「前に考えたはずなのに...」</h3>
+                    <p>過去の思考や判断の理由が思い出せない</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">&#128165;</div>
+                    <h3>「頭の中がパンクしそう...」</h3>
+                    <p>管理すべき情報量が多すぎて処理しきれない</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">&#128172;</div>
+                    <h3>「この判断で合ってる？」</h3>
+                    <p>壁打ち相手がいない、自分だけで考えても堂々巡り</p>
+                </div>
+            </div>
+            <div class="problem-conclusion">
+                これらはすべて「脳の容量不足」が原因です
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution">
+        <div class="section-header">
+            <h2>解決策: Claude Code</h2>
+        </div>
+
+        <div class="comparison">
+            <table>
+                <thead>
+                    <tr>
+                        <th>観点</th>
+                        <th>ChatGPT（単体）</th>
+                        <th>Claude Code</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>文脈の理解</td>
+                        <td>毎回ゼロから説明が必要</td>
+                        <td class="highlight">あなたの全情報を把握済み</td>
+                    </tr>
+                    <tr>
+                        <td>情報の蓄積</td>
+                        <td>会話が消える</td>
+                        <td class="highlight">メモリに蓄積し、次回に引き継ぐ</td>
+                    </tr>
+                    <tr>
+                        <td>カスタマイズ</td>
+                        <td>汎用的な回答</td>
+                        <td class="highlight">あなた専用にチューニング済み</td>
+                    </tr>
+                    <tr>
+                        <td>作業の質</td>
+                        <td>質問→回答のみ</td>
+                        <td class="highlight">設計→計画→実行の構造で動く</td>
+                    </tr>
+                    <tr>
+                        <td>成長</td>
+                        <td>何度使っても同じ</td>
+                        <td class="highlight">使うほどあなたを理解し、精度が上がる</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="features-grid" style="margin-top: 4rem;">
+            <div class="feature-card">
+                <div class="feature-icon">&#9998;</div>
+                <h3>思考の外部化</h3>
+                <p>頭の中のモヤモヤを文章化してAIと壁打ち。判断の理由を記録し、「考えた」ことが資産として蓄積される。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128202;</div>
+                <h3>情報の一元管理</h3>
+                <p>目標→プロジェクト→タスクを一気通貫で管理。「あの情報どこだっけ」がなくなる。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#9889;</div>
+                <h3>AIによる業務加速</h3>
+                <p>文字起こしからの情報整理、要件定義の壁打ち、過去の判断を踏まえた意思決定サポート。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128279;</div>
+                <h3>知識の連結</h3>
+                <p>バラバラだった情報がつながり、新しいアイデアや気づきが生まれる。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Setup Section -->
+    <section id="setup">
+        <div class="section-header">
+            <h2>セットアップ（約20分）</h2>
+            <p>順番通りに進めれば、すぐに使い始められます</p>
+        </div>
+
+        <div class="steps">
+
+            <!-- STEP 1 -->
+            <div class="step">
+                <div class="step-content">
+                    <h3>Max プランの契約</h3>
+                    <p>費用は会社負担。精算方法は西村に確認。</p>
+                    <span class="step-time">約5分</span>
+
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
+                        <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 0.75rem;">ブラウザで <a href="https://claude.ai" target="_blank" style="color: var(--accent-primary);">claude.ai</a> を開く</li>
+                            <li style="margin-bottom: 0.75rem;">「<strong style="color: var(--text-primary);">Sign up</strong>」（アカウント作成）をクリック</li>
+                            <li style="margin-bottom: 0.75rem;">メールアドレスとパスワードを設定</li>
+                            <li style="margin-bottom: 0.75rem;">メール認証</li>
+                            <li style="margin-bottom: 0.75rem;">ログイン後、画面左下「<strong style="color: var(--text-primary);">Upgrade</strong>」をクリック</li>
+                            <li style="margin-bottom: 0.75rem;"><strong style="color: var(--text-primary);">Max（$100/月）</strong>を選択</li>
+                            <li style="margin-bottom: 0;">クレジットカード情報を入力して完了</li>
+                        </ol>
+                    </div>
+
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px; border: 1px solid rgba(34, 197, 94, 0.3);">
+                        <strong style="color: #22c55e;">確認:</strong>
+                        <span style="color: var(--text-secondary);">画面左下にプラン名が「Max」と表示されていればOK</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="step">
+                <div class="step-content">
+                    <h3>デスクトップアプリのインストール</h3>
+                    <p>ブラウザではなく、デスクトップアプリを使います。</p>
+                    <span class="step-time">約5分</span>
+
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
+                        <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">Mac の場合</p>
+                        <ol style="margin: 0 0 1.5rem; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 0.5rem;">ブラウザで <a href="https://claude.ai/download" target="_blank" style="color: var(--accent-primary);">claude.ai/download</a> を開く</li>
+                            <li style="margin-bottom: 0.5rem;">「<strong style="color: var(--text-primary);">Download for Mac</strong>」をクリック</li>
+                            <li style="margin-bottom: 0.5rem;">ダウンロードした .dmg ファイルを開く</li>
+                            <li style="margin-bottom: 0.5rem;">Claude をアプリケーションフォルダにドラッグ&amp;ドロップ</li>
+                            <li style="margin-bottom: 0;">アプリケーションフォルダから Claude を起動</li>
+                        </ol>
+
+                        <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">Windows の場合</p>
+                        <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 0.5rem;">ブラウザで <a href="https://claude.ai/download" target="_blank" style="color: var(--accent-primary);">claude.ai/download</a> を開く</li>
+                            <li style="margin-bottom: 0.5rem;">「<strong style="color: var(--text-primary);">Download for Windows</strong>」をクリック</li>
+                            <li style="margin-bottom: 0.5rem;">ダウンロードした .exe ファイルを実行</li>
+                            <li style="margin-bottom: 0.5rem;">インストールウィザードに従う</li>
+                            <li style="margin-bottom: 0;">デスクトップのショートカットから起動</li>
+                        </ol>
+                    </div>
+
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px; border: 1px solid rgba(34, 197, 94, 0.3);">
+                        <strong style="color: #22c55e;">確認:</strong>
+                        <span style="color: var(--text-secondary);">Claude のチャット画面が表示されればOK</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="step">
+                <div class="step-content">
+                    <h3>CLAUDE.md の設定</h3>
+                    <p>CLAUDE.md とは、Claudeが毎回自動で読み込む「永続的な指示書」。これを入れることで毎回同じことを説明しなくていい。使うほどメモリに知見が蓄積される。</p>
+                    <span class="step-time">約5分</span>
+
+                    <p style="margin-top: 1rem; color: var(--text-secondary);">以下をコピーして Claude に送信するだけ。</p>
+
+                    <div class="code-block">
+                        <pre>以下の内容を ~/.claude/CLAUDE.md に保存して。ディレクトリがなければ作成して。保存後、概要を表示して。
+
+---
+
+# My AI Assistant
+
+> 判断を代行するのではなく、判断の材料を構造化して差し出す。
+> 盲点を指摘する。答えを押し付けない。選択肢とトレードオフを見せる。
+
+---
+
+## 言語
+
+- 日本語で応答する
+
+---
+
+## 行動原則
+
+1. 事実で動け。推測で動くな。知らないことは「知らない」と言う
+2. 既存パターンを尊重する。壊すなら理由を示せ
+3. 頼まれたこと以外やるな。「念のため」で機能を足すな
+4. 変更は小さく、確実に。影響範囲を最小化する
+5. 結論から入る。60秒以上沈黙しない
+6. お世辞は言わない。「全部OKです」は疑え
+7. 言語化に詰まっている時は問いで引き出せ
+
+---
+
+## ワークフロー: 設計 → 計画 → 実行
+
+いきなり作業を始めない。必ずこの順番で進める。
+
+### Phase 1: 設計（本当の問題を明確にする）
+- 何を解決したいのか、ゴールを明確にする
+- 譲れない条件を定義する（期限、品質、コスト等）
+- 2-3のアプローチを比較し、それぞれのメリット・デメリットを明示する
+- 人間が1つ選ぶ。AIが勝手に決めない
+
+### Phase 2: 計画（何をどの順でやるか決める）
+- やるべきことを具体的に列挙する
+- リスクや依存関係を洗い出す
+- 計画が承認されてから実行に移る（ここが最重要）
+
+### Phase 3: 実行
+- 計画通りに進める
+- スコープが逸れたら設計に戻る（「ついでにこれも」をやらない）
+
+---
+
+## メモリ管理
+
+Claudeは使うほど賢くなる。ただし仕組みが必要。
+
+- セッション開始時にメモリファイルを読んでから応答する
+- 訂正や好みは即座にメモリに保存する
+- フィードバック（訂正・確認）があれば即座にメモリを更新する
+
+---
+
+## ワークフロー自動化
+
+- 2回以上繰り返す指示はスラッシュコマンドとして保存する
+- 複数ステップの定型作業は1つのコマンドにまとめる
+
+---
+
+## 制約
+
+### セキュリティ
+- 秘密情報はコードにハードコードしない。環境変数を使う
+- 機密情報（パスワード、個人情報、未公開情報）を外部に出力しない
+
+### 外部サービスへの送信
+- メッセージ送信前に必ず送信先名を取得・表示し、承認を得てから送信する
+
+---
+
+## Anti-patterns（AIにこうさせるな）
+
+- 「〜だと思います」で濁す → 根拠を示すか、わからないと言え
+- 長い前置きの後にようやく本題 → 結論を最初の1行に
+- 「全部OKです、問題ありません」 → 本当にか？見落としを探せ
+- 「念のため」で不要な作業を追加 → スコープを守れ
+- あなたの言葉をオウム返し → 自分の視点で価値を足せ
+
+---
+
+## 検証（絶対に省略しない）
+
+- AIの出力は「下書き」。最終判断は必ず人間がやる
+- 数字・日付・固有名詞は特に要注意（AIは嘘をつくことがある）
+- 「合ってますか？」と聞いて「合ってます」と返ってきても、自分で確認する</pre>
+                    </div>
+
+                    <p style="color: var(--text-secondary); margin-top: 1rem;">Claude が「保存しました」と返してきたら成功。次のメッセージを送って確認:</p>
+
+                    <div class="code-block">
+                        <pre>設定が読み込まれているか確認して。CLAUDE.md の内容を要約して見せて。</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 4 -->
+            <div class="step">
+                <div class="step-content">
+                    <h3>Obsidian Vault の導入</h3>
+                    <p>広告運用のコンテキスト（講義1-9）とテンプレートが入ったVaultスターターキットをダウンロードして使う。</p>
+                    <span class="step-time">約5分</span>
+
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
+                        <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 0.75rem;">下のボタンからZIPをダウンロード</li>
+                            <li style="margin-bottom: 0.75rem;">ZIPを展開する</li>
+                            <li style="margin-bottom: 0.75rem;">Obsidianを開く（まだ入ってなければ <a href="https://obsidian.md" target="_blank" style="color: var(--accent-primary);">obsidian.md</a> からダウンロード）</li>
+                            <li style="margin-bottom: 0.75rem;">「<strong style="color: var(--text-primary);">Vaultを開く</strong>」→ 展開したフォルダを選択</li>
+                            <li style="margin-bottom: 0;">Vault が開けばOK</li>
+                        </ol>
+                    </div>
+
+                    <div style="margin-top: 1.5rem; text-align: center;">
+                        <a href="vault-starter.zip" class="btn btn-primary">Vault スターターキットをダウンロード</a>
+                    </div>
+
+                    <p style="margin-top: 1.5rem; color: var(--text-secondary); font-weight: 500;">Vault 構造:</p>
+                    <div class="vault-structure">
+                        <pre>MyVault/
+├── 00_Inbox/          &#8212; メモ置き場
+├── 10_Goals/          &#8212; 目標管理
+├── 20_Context/        &#8212; 事業コンテキスト（広告講義1-9入り）
+├── 30_Projects/       &#8212; PJ管理
+├── 40_Knowledge/      &#8212; ナレッジ蓄積
+├── 50_Literature/     &#8212; 読書・記事メモ
+├── 60_Templates/      &#8212; テンプレート（16種類）
+├── 07_DailyLog/       &#8212; 日次ログ
+└── 08_MeetingLog/     &#8212; MTGログ</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 5 -->
+            <div class="step">
+                <div class="step-content">
+                    <h3>毎日使う（これが一番大事）</h3>
+                    <p>セットアップしたら終わりではない。毎日使うことで Claude はあなた専用のAIに進化する。</p>
+
+                    <p style="margin-top: 1.5rem; color: var(--text-primary); font-weight: 500; font-size: 1.1rem;">体験プロンプト 3つ</p>
+
+                    <div class="prompt-grid" style="margin-top: 1rem;">
+                        <div class="prompt-card">
+                            <div class="prompt-header">
+                                <span class="icon">1</span>
+                                <h4>「設計→計画→実行」を体感</h4>
+                            </div>
+                            <div class="prompt-content">
+                                <pre>来週のチームMTGのアジェンダを作りたい。
+テーマは「Q4の振り返りと来期の目標設定」。
+参加者は5人で、時間は1時間。</pre>
+                                <div class="prompt-note">
+                                    Claude がいきなりアジェンダを出すのではなく、まず確認の質問をしてくるはず。これが「設計→計画→実行」。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="prompt-card">
+                            <div class="prompt-header">
+                                <span class="icon">2</span>
+                                <h4>指摘してくれるかテスト</h4>
+                            </div>
+                            <div class="prompt-content">
+                                <pre>以下の文章をクライアントに送りたい。問題ないかチェックして。
+
+お世話になっております。
+先日のMTGで決まった件、進めておきます。
+詳細は追ってご連絡します。</pre>
+                                <div class="prompt-note">
+                                    「何が決まったか不明」「いつ連絡するか不明」等の指摘が返ってくるはず。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="prompt-card">
+                            <div class="prompt-header">
+                                <span class="icon">3</span>
+                                <h4>メモリの蓄積を確認</h4>
+                            </div>
+                            <div class="prompt-content">
+                                <pre>自分の名前と所属と担当業務を覚えてほしい。
+名前: （あなたの名前）
+所属: （あなたの部署）
+担当: （あなたの業務内容）</pre>
+                                <div class="prompt-note">
+                                    次回の会話で「自分のこと覚えてる？」と聞いてみる。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /steps -->
+    </section>
+
+    <!-- Daily Usage Section -->
+    <section id="usage">
+        <div class="section-header">
+            <h2>日々の使い方</h2>
+            <p>ChatGPT に聞いてたことを、全部 Claude に聞け</p>
+        </div>
+
+        <div class="prompt-grid">
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <span class="icon">&#128221;</span>
+                    <h4>議事録の整理</h4>
+                </div>
+                <div class="prompt-content">
+                    <pre>以下のMTGメモを構造化して。
+
+## フォーマット
+- 日時・参加者
+- アジェンダ（話した内容の要約）
+- 決定事項（誰が何をいつまでにやるか）
+- 未決事項（持ち越し、要検討）
+- 次回アクション
+
+## メモ:
+（ここにメモを貼る）</pre>
+                </div>
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <span class="icon">&#9993;</span>
+                    <h4>メール・チャットの下書き</h4>
+                </div>
+                <div class="prompt-content">
+                    <pre>以下の条件でメールの下書きを作って。
+- 宛先: クライアント（A社の田中さん）
+- 目的: 来月のキャンペーン提案のMTG日程調整
+- トーン: ビジネスだがカジュアル寄り
+- 含めたい情報: 候補日3つ、所要時間1時間</pre>
+                </div>
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <span class="icon">&#128172;</span>
+                    <h4>壁打ち・アイデア出し</h4>
+                </div>
+                <div class="prompt-content">
+                    <pre>壁打ちに付き合ってほしい。
+## テーマ
+（解決したいこと）
+## 背景
+（なぜこれを考えているのか）
+## 自分の仮説
+（今のところの考え）
+## 求めること
+- 仮説の穴を指摘してほしい
+- 別の視点からのアプローチを出してほしい</pre>
+                </div>
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <span class="icon">&#128202;</span>
+                    <h4>レポート作成</h4>
+                </div>
+                <div class="prompt-content">
+                    <pre>以下のデータから月次レポートのサマリーを作成して。
+- 読む人: 上長（数字に強い。結論ファースト好み）
+- 含める内容: 前月比、目標達成率、特筆すべきトピック3つ
+- フォーマット: 箇条書き。1ページに収まる分量
+
+## データ:
+（ここにデータを貼る）</pre>
+                </div>
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <span class="icon">&#9998;</span>
+                    <h4>文章の添削</h4>
+                </div>
+                <div class="prompt-content">
+                    <pre>以下の文章を添削して。
+- 読む人: （誰に向けた文章か）
+- 目的: （情報共有 / 行動促進）
+- 改善してほしいポイント: （簡潔さ / 説得力）
+
+## 原文:
+（ここに文章を貼る）</pre>
+                </div>
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <span class="icon">&#128270;</span>
+                    <h4>情報の調査・整理</h4>
+                </div>
+                <div class="prompt-content">
+                    <pre>以下について調査して整理してほしい。
+## 調べたいこと
+（具体的に何を知りたいか）
+## 背景
+（なぜ調べているのか）
+## 出力フォーマット
+- 要点を箇条書き3-5個
+- メリデメ比較表も</pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Policy Section -->
+    <section id="policy">
+        <div class="section-header">
+            <h2>利用ポリシー（必読）</h2>
+            <p>Claude に入力する = 社外に出す</p>
+        </div>
+
+        <div class="policy-grid">
+            <div class="policy-card danger">
+                <h3>絶対NG（入力禁止）</h3>
+                <ul>
+                    <li>顧客の個人情報（氏名・住所・電話番号）</li>
+                    <li>パスワード・APIキー・アクセストークン</li>
+                    <li>社員の個人情報（給与・評価・健康情報）</li>
+                    <li>NDA対象の取引先情報</li>
+                    <li>未公開の経営情報</li>
+                </ul>
+            </div>
+
+            <div class="policy-card warning">
+                <h3>要注意（匿名化すればOK）</h3>
+                <ul>
+                    <li>売上データ → 「A社の売上が約X万円」に置換</li>
+                    <li>社内プロセスの相談 → 金額を丸める、人名を伏せる</li>
+                    <li>クライアント案件 → 社名を「A社」に置き換え</li>
+                </ul>
+            </div>
+
+            <div class="policy-card safe">
+                <h3>OK（そのまま入力可）</h3>
+                <ul>
+                    <li>一般的な業務相談</li>
+                    <li>公開情報の整理・要約</li>
+                    <li>文章の添削・翻訳</li>
+                    <li>アイデア出し・壁打ち</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="policy-note">
+            迷ったら「入力しない」がデフォルト。判断に迷う時点でリスクがある。
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="section-header">
+            <h2>よくある質問</h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question">Claude が嘘をついた / 間違った情報を出した</div>
+                <div class="faq-answer">
+                    <p>「ハルシネーション」と呼ばれるAIの特性です。「根拠も一緒に出して」と指示してください。数字・日付・人名は必ず自分で裏取りしてください。</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">会話をリセットしたいときは？</div>
+                <div class="faq-answer">
+                    <p>/clear と入力してください。会話履歴がリセットされて新しいセッションになります。メモリはリセットされません。</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Claude が長すぎる回答をする</div>
+                <div class="faq-answer">
+                    <p>「もっと簡潔に。箇条書き3行以内で」と指示してください。指摘すればメモリに残り、次回から改善されます。</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">機密情報を入力してしまった</div>
+                <div class="faq-answer">
+                    <p>すぐに該当する会話を削除してください。その後、西村に報告してください。</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">結局 ChatGPT と何が違うの？</div>
+                <div class="faq-answer">
+                    <p>ChatGPTは毎回ゼロから。Claude Code は前回の続きから始まります。使うほどあなた専用のAIに進化します。CLAUDE.md + メモリが決定的な違いです。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-cta">
+            <h2>今すぐ始めよう</h2>
+            <p>困ったら → まずClaude自身に聞く → それでもダメなら西村に聞く</p>
+            <a href="#setup" class="btn btn-primary">セットアップを始める &rarr;</a>
+        </div>
+        <div class="footer-info">
+            <p style="margin-top: 1rem; color: var(--text-muted);">AXIS アド事業部 | 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('open') ? '&#10005;' : '&#9776;';
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                mobileMenuBtn.innerHTML = '&#9776;';
+            });
+        });
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('open');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Copy Button Icons
+        const copyIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9.75a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" />
+        </svg>`;
+
+        const checkIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+        </svg>`;
+
+        function addCopyButton(container, getText) {
+            const button = document.createElement('button');
+            button.className = 'copy-btn';
+            button.innerHTML = copyIcon + 'Copy';
+
+            button.addEventListener('click', async () => {
+                const text = getText();
+                try {
+                    await navigator.clipboard.writeText(text);
+                    button.innerHTML = checkIcon + 'Copied!';
+                    button.classList.add('copied');
+                    setTimeout(() => {
+                        button.innerHTML = copyIcon + 'Copy';
+                        button.classList.remove('copied');
+                    }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy:', err);
+                }
+            });
+
+            container.appendChild(button);
+        }
+
+        // Add copy buttons to code blocks
+        document.querySelectorAll('.code-block').forEach(block => {
+            addCopyButton(block, () => block.querySelector('pre').textContent.trim());
+        });
+
+        // Add copy buttons to prompt cards
+        document.querySelectorAll('.prompt-content').forEach(content => {
+            content.style.position = 'relative';
+            const button = document.createElement('button');
+            button.className = 'copy-btn';
+            button.style.top = '0.5rem';
+            button.style.right = '0.5rem';
+            button.innerHTML = copyIcon + 'Copy';
+
+            button.addEventListener('click', async () => {
+                const pre = content.querySelector('pre');
+                const text = pre.textContent.trim();
+                try {
+                    await navigator.clipboard.writeText(text);
+                    button.innerHTML = checkIcon + 'Copied!';
+                    button.classList.add('copied');
+                    setTimeout(() => {
+                        button.innerHTML = copyIcon + 'Copy';
+                        button.classList.remove('copied');
+                    }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy:', err);
+                }
+            });
+
+            content.appendChild(button);
+        });
+    </script>
+</body>
+</html>

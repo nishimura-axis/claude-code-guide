@@ -1737,17 +1737,18 @@ MyVault/
 3. .gitignore に .obsidian/workspace.json を追加
 4. GitHub にプライベートリポジトリを作成
 5. リモートリポジトリに初回プッシュ
-6. Obsidian の「コミュニティプラグイン」を有効化して「Obsidian Git」プラグインをインストール・有効化
-7. Obsidian Git の設定：
+6. 完了したら、Obsidian で自動同期するための「Obsidian Git」プラグインの設定手順を教えて。以下の設定にしたい：
    - 自動プッシュ間隔: 10分
    - 起動時に自動プル: ON
-   - 自動コミットメッセージ: "auto-sync {{date}}"
-8. 設定完了後、正しく連携されているか確認して報告</pre>
+   - 自動コミットメッセージ: "auto-sync {{date}}"</pre>
                     </div>
 
                     <div style="margin-top: 1rem; padding: 1rem; background: var(--bg-tertiary); border-radius: 8px;">
-                        <strong style="color: var(--text-primary);">📌 Claude の指示に従ってください</strong><br>
-                        <span style="color: var(--text-secondary);">途中で「実行してよいですか？」と確認されたら「はい」と答えてください。最後にObsidianを一度再起動すれば、自動同期が始まります。</span>
+                        <strong style="color: var(--text-primary);">📌 2段階で進みます</strong><br>
+                        <span style="color: var(--text-secondary);">
+                            <strong>前半（自動）</strong>：Git設定〜GitHub連携はClaudeが自動でやります。「実行してよいですか？」と聞かれたら「はい」と答えてください。<br>
+                            <strong>後半（手動）</strong>：Obsidian Git プラグインの設定は、Claudeが出す手順に沿って自分で操作します（Obsidianの画面で数クリックするだけ）。
+                        </span>
                     </div>
                 </div>
             </div>

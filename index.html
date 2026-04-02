@@ -1364,23 +1364,23 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Obsidian・Git・Node.js のインストール</td>
+                        <td>Claude Max の課金</td>
                         <td class="highlight">CLAUDE.md の作成・設定</td>
                     </tr>
                     <tr>
-                        <td>GitHub アカウント・トークン取得</td>
+                        <td>Obsidian・Git・Node.js のインストール</td>
                         <td class="highlight">スターターキットの展開・配置</td>
                     </tr>
                     <tr>
-                        <td>Claude の課金・アプリインストール</td>
-                        <td class="highlight">Git 初期設定・GitHub 連携</td>
+                        <td>GitHub アカウント・トークン取得</td>
+                        <td class="highlight">Git初期設定・GitHub連携</td>
                     </tr>
                     <tr>
-                        <td>プロンプトをコピペして送信</td>
+                        <td>デスクトップアプリのインストール</td>
                         <td class="highlight">自動同期の手順案内</td>
                     </tr>
                     <tr>
-                        <td>Claude の確認に「はい」と答える</td>
+                        <td>プロンプトをコピペして送信</td>
                         <td class="highlight">テストメモ作成・検証</td>
                     </tr>
                 </tbody>
@@ -1394,7 +1394,36 @@
                 <p style="margin: 0.25rem 0 0; color: var(--text-secondary); font-size: 0.9rem;">Claude Code を入れる前に、必要なツールを先にインストールします</p>
             </div>
 
-            <!-- STEP 1: Obsidian のインストール + Vault 作成 -->
+            <!-- STEP 1: Claude Max の課金 -->
+            <div class="step">
+                <div class="step-content">
+                    <h3>Claude Max の課金</h3>
+                    <p><span style="display: inline-block; padding: 0.2rem 0.6rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.8rem; color: var(--accent-primary); margin-right: 0.5rem;">🌐 ブラウザ</span>まず Claude のアカウントを作成します。この後のステップで困ったときに、すぐ Claude に相談できるようになります。</p>
+                    <span class="step-time">⏱️ 約5分</span>
+
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
+                        <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 0.75rem;">ブラウザで <a href="https://claude.ai" target="_blank" style="color: var(--accent-primary);">claude.ai</a> を開く</li>
+                            <li style="margin-bottom: 0.75rem;">「<strong style="color: var(--text-primary);">Sign up</strong>」をクリック</li>
+                            <li style="margin-bottom: 0.75rem;">メールアドレスとパスワードを設定</li>
+                            <li style="margin-bottom: 0.75rem;">メール認証</li>
+                            <li style="margin-bottom: 0.75rem;">ログイン後、画面左下「<strong style="color: var(--text-primary);">Upgrade</strong>」をクリック</li>
+                            <li style="margin-bottom: 0.75rem;">Max（$100/月）を選択</li>
+                            <li style="margin-bottom: 0;">クレジットカード情報を入力して完了</li>
+                        </ol>
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(234, 179, 8, 0.1); border-radius: 8px; border: 1px solid rgba(234, 179, 8, 0.3);">
+                            <strong style="color: #eab308;">⚠️ デスクトップアプリのインストール画面が出ますが、今はスキップしてください。</strong><br>
+                            <span style="color: var(--text-secondary);">アプリのインストールは STEP 5 で行います。まずは先にブラウザ版（claude.ai）が使える状態にしておけばOKです。</span>
+                        </div>
+                        <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px; border: 1px solid rgba(34, 197, 94, 0.3);">
+                            <strong style="color: #22c55e;">✅ 確認：</strong><span style="color: var(--text-secondary);">画面左下に「Max」と表示されていればOK</span>
+                        </div>
+                        <p style="margin-top: 0.75rem; color: var(--text-muted); font-size: 0.85rem;">費用は会社負担。精算方法は西村に確認。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2: Obsidian のインストール + Vault 作成 -->
             <div class="step">
                 <div class="step-content">
                     <h3>Obsidian のインストール + Vault 作成</h3>
@@ -1430,7 +1459,7 @@
                 </div>
             </div>
 
-            <!-- STEP 2: GitHub アカウント作成 + アクセストークン取得 -->
+            <!-- STEP 3: GitHub アカウント作成 + アクセストークン取得 -->
             <div class="step">
                 <div class="step-content">
                     <h3>GitHub アカウント作成 + アクセストークン取得</h3>
@@ -1492,7 +1521,7 @@
                 </div>
             </div>
 
-            <!-- STEP 3: Homebrew + Node.js のインストール -->
+            <!-- STEP 4: Homebrew + Node.js のインストール -->
             <div class="step">
                 <div class="step-content">
                     <h3>Homebrew + Node.js のインストール</h3>
@@ -1523,6 +1552,10 @@
                             <li style="margin-bottom: 0.75rem;">ダウンロードしたファイルを実行、設定はデフォルトでOK</li>
                             <li style="margin-bottom: 0;">確認：PowerShell を開いて <code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">node --version</code> でバージョンが表示されればOK</li>
                         </ol>
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(99, 102, 241, 0.1); border-radius: 8px; border: 1px solid rgba(99, 102, 241, 0.3);">
+                            <strong style="color: var(--accent-primary);">💡 エラーが出たら claude.ai で聞こう</strong><br>
+                            <span style="color: var(--text-secondary);">ターミナルでエラーが出ても慌てないでください。エラーメッセージをそのままコピーして、ブラウザで <a href="https://claude.ai" target="_blank" style="color: var(--accent-primary);">claude.ai</a> に貼り付けて「これどうすればいい？」と聞けば、解決方法を教えてくれます。</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1533,27 +1566,14 @@
                 <p style="margin: 0.25rem 0 0; color: var(--text-secondary); font-size: 0.9rem;">環境が整ったので、Claude Code をインストールします</p>
             </div>
 
-            <!-- STEP 4: Claude Max 課金 + デスクトップアプリ -->
+            <!-- STEP 5: Claude Code デスクトップアプリのインストール -->
             <div class="step">
                 <div class="step-content">
-                    <h3>Claude Max 課金 + デスクトップアプリ</h3>
-                    <p><span style="display: inline-block; padding: 0.2rem 0.6rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.8rem; color: var(--accent-primary); margin-right: 0.5rem;">🌐 ブラウザ → 💻 アプリ</span>Claude のアカウントを作成し、Max プランに登録してデスクトップアプリをインストールします。</p>
-                    <span class="step-time">⏱️ 約10分</span>
+                    <h3>Claude Code デスクトップアプリのインストール</h3>
+                    <p><span style="display: inline-block; padding: 0.2rem 0.6rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.8rem; color: var(--accent-primary); margin-right: 0.5rem;">🌐 ブラウザ → 💻 アプリ</span>STEP 1 で作成したアカウントでデスクトップアプリにログインし、MyVault を開きます。</p>
+                    <span class="step-time">⏱️ 約5分</span>
 
                     <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
-                        <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">🔐 アカウント作成 & Max プラン登録</p>
-                        <ol style="margin: 0 0 1.5rem; padding-left: 1.5rem; color: var(--text-secondary);">
-                            <li style="margin-bottom: 0.75rem;">ブラウザで <a href="https://claude.ai" target="_blank" style="color: var(--accent-primary);">claude.ai</a> を開く</li>
-                            <li style="margin-bottom: 0.75rem;">「<strong style="color: var(--text-primary);">Sign up</strong>」をクリック</li>
-                            <li style="margin-bottom: 0.75rem;">メールアドレスとパスワードを設定</li>
-                            <li style="margin-bottom: 0.75rem;">メール認証を完了する</li>
-                            <li style="margin-bottom: 0.75rem;">ログイン後、画面左下の「<strong style="color: var(--text-primary);">Upgrade</strong>」をクリック</li>
-                            <li style="margin-bottom: 0.75rem;">「<strong style="color: var(--text-primary);">Max</strong>」（$100/月）を選択</li>
-                            <li style="margin-bottom: 0;">クレジットカード情報を入力して完了。費用は会社負担。精算方法は西村に確認。</li>
-                        </ol>
-
-                        <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">💻 デスクトップアプリのインストール</p>
-
                         <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong style="color: var(--text-primary);">🍎 Mac の場合</strong></p>
                         <ol style="margin: 0 0 1.5rem; padding-left: 1.5rem; color: var(--text-secondary);">
                             <li style="margin-bottom: 0.5rem;">ブラウザで <a href="https://claude.ai/download" target="_blank" style="color: var(--accent-primary);">claude.ai/download</a> を開く</li>
@@ -1574,10 +1594,10 @@
 
                         <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">🔑 初回ログイン</p>
                         <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
-                            <li style="margin-bottom: 0.5rem;">アプリを起動すると、ログイン画面が表示される</li>
-                            <li style="margin-bottom: 0.5rem;">作成したアカウント（メールアドレスとパスワード）でログイン</li>
-                            <li style="margin-bottom: 0.5rem;">ファイルへのアクセス許可を求められたら「<strong style="color: var(--text-primary);">許可</strong>」をクリック</li>
-                            <li style="margin-bottom: 0;">「プロジェクトを選択」→ STEP 1 で作成した MyVault フォルダを選択（~/Documents/Obsidian/MyVault）</li>
+                            <li style="margin-bottom: 0.5rem;">アプリを起動するとログイン画面が表示される</li>
+                            <li style="margin-bottom: 0.5rem;">STEP 1 で作成したアカウント（メールアドレスとパスワード）でログイン</li>
+                            <li style="margin-bottom: 0.5rem;">「プロジェクトを選択」と聞かれたら、STEP 2 で作成した MyVault フォルダを選択（~/Documents/Obsidian/MyVault）</li>
+                            <li style="margin-bottom: 0;">ファイルへのアクセス許可を求められたら「<strong style="color: var(--text-primary);">許可</strong>」をクリック</li>
                         </ol>
                         <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px; border: 1px solid rgba(34, 197, 94, 0.3);">
                             <strong style="color: #22c55e;">✅ 確認：</strong><span style="color: var(--text-secondary);">Claude Code のチャット画面が表示され、MyVault が開かれた状態になればOK</span>
@@ -1586,7 +1606,7 @@
                 </div>
             </div>
 
-            <!-- STEP 5: CLAUDE.md の設定 -->
+            <!-- STEP 6: CLAUDE.md の設定 -->
             <div class="step">
                 <div class="step-content">
                     <h3>CLAUDE.md の設定</h3>
@@ -1707,7 +1727,7 @@ Claudeは使うほど賢くなる。ただし仕組みが必要。
                 <p style="margin: 0.25rem 0 0; color: var(--text-secondary); font-size: 0.9rem;">ここからはプロンプトをコピペするだけ。Claude が全部やってくれます</p>
             </div>
 
-            <!-- STEP 6: スターターキットの導入 -->
+            <!-- STEP 7: スターターキットの導入 -->
             <div class="step">
                 <div class="step-content">
                     <h3>スターターキットの導入</h3>
@@ -1756,7 +1776,7 @@ MyVault/
                 </div>
             </div>
 
-            <!-- STEP 7: GitHub 連携 -->
+            <!-- STEP 8: GitHub 連携 -->
             <div class="step">
                 <div class="step-content">
                     <h3>GitHub 連携</h3>
@@ -1769,7 +1789,7 @@ MyVault/
 
 - GitHubユーザー名: （ここにあなたのユーザー名を入力）
 - メールアドレス: （ここにGitHubに登録したメールを入力）
-- アクセストークン: （ここに STEP 2 で取得したトークンを貼り付け）
+- アクセストークン: （ここに STEP 3 で取得したトークンを貼り付け）
 - リポジトリ名: MyVault
 - リポジトリの公開設定: private（非公開）
 - Vaultの場所: ~/Documents/Obsidian/MyVault
@@ -1789,7 +1809,7 @@ MyVault/
                 </div>
             </div>
 
-            <!-- STEP 8: 自動プル・プッシュの設定 -->
+            <!-- STEP 9: 自動プル・プッシュの設定 -->
             <div class="step">
                 <div class="step-content">
                     <h3>自動プル・プッシュの設定</h3>
@@ -1816,7 +1836,7 @@ MyVault/
                 </div>
             </div>
 
-            <!-- STEP 9: 動作確認 -->
+            <!-- STEP 10: 動作確認 -->
             <div class="step">
                 <div class="step-content">
                     <h3>動作確認（Claude Code × Obsidian × GitHub）</h3>

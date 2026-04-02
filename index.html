@@ -1753,7 +1753,65 @@ MyVault/
                 </div>
             </div>
 
-            <!-- STEP 9: 毎日使う -->
+            <!-- STEP 9: 動作確認 -->
+            <div class="step">
+                <div class="step-content">
+                    <h3>動作確認（Claude Code × Obsidian × GitHub）</h3>
+                    <p><span style="display: inline-block; padding: 0.2rem 0.6rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.8rem; color: var(--accent-primary); margin-right: 0.5rem;">💻 Claude Code</span>全部ちゃんと繋がっているかテストします。Claude Code に以下を送信してください。</p>
+                    <span class="step-time">⏱️ 約3分</span>
+
+                    <div class="code-block" style="margin-top: 1rem;">
+                        <button class="copy-btn" onclick="copyCode(this)"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> コピー</button>
+                        <pre>~/Documents/Obsidian/MyVault の 00_Inbox に、以下の内容でテストメモを作成して。
+
+ファイル名: セットアップ完了.md
+
+内容:
+---
+title: セットアップ完了
+type: fleeting
+updated: （今日の日付）
+---
+
+# セットアップ完了！
+
+Claude Code × Obsidian × GitHub の環境構築が完了しました。
+
+## 確認済み
+- [ ] Claude Code でファイルを作成できた
+- [ ] Obsidian でこのメモが見れた
+- [ ] GitHub に自動同期された
+
+## 次にやること
+- CLAUDE.md を自分の業務に合わせてカスタマイズ
+- 日々の業務で Claude Code を使い始める
+
+---
+
+作成後、以下を確認して報告して：
+1. ファイルが正しく作成されたか
+2. git status でコミットされていない変更があるか（Obsidian Gitが自動コミットするので、変更があればOK）
+3. GitHub のリポジトリに最新の変更が反映されているか（git log で確認）</pre>
+                    </div>
+
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px; border: 1px solid rgba(34, 197, 94, 0.3);">
+                        <strong style="color: #22c55e;">✅ 確認ポイント</strong><br>
+                        <span style="color: var(--text-secondary);">
+                            1. Claude Code → メモが作成されたと報告が返る<br>
+                            2. Obsidian → 00_Inbox に「セットアップ完了.md」が表示される<br>
+                            3. GitHub → 数分後にリポジトリに反映される（Obsidian Gitの自動プッシュ）
+                        </span>
+                    </div>
+
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%); border-radius: 12px; border: 1px solid var(--accent-primary); text-align: center;">
+                        <span style="font-size: 2rem;">🎉</span>
+                        <p style="margin: 0.5rem 0 0; color: var(--text-primary); font-size: 1.1rem; font-weight: 500;">全部確認できたら、セットアップ完了！</p>
+                        <p style="margin: 0.5rem 0 0; color: var(--text-secondary); font-size: 0.9rem;">あなたの「第二の脳」が動き始めました</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 10: 毎日使う -->
             <div class="step">
                 <div class="step-content">
                     <h3>毎日使う（これが一番大事）</h3>

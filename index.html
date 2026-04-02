@@ -1351,7 +1351,7 @@
     <section id="setup">
         <div class="section-header">
             <h2>📝 セットアップ手順</h2>
-            <p>約40分で完了します。ほとんどAIが自動で行います。</p>
+            <p>約60分で完了します。ほとんどAIが自動で行います。</p>
         </div>
 
         <div class="comparison" style="margin-bottom: 3rem;">
@@ -1364,63 +1364,197 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Maxプランの契約</td>
+                        <td>Obsidian・Git・Node.js のインストール</td>
                         <td class="highlight">CLAUDE.md の作成・設定</td>
                     </tr>
                     <tr>
-                        <td>アプリのインストール（Claude Code・Obsidian）</td>
-                        <td class="highlight">Vault の展開・配置</td>
+                        <td>GitHub アカウント・トークン取得</td>
+                        <td class="highlight">スターターキットの展開・配置</td>
                     </tr>
                     <tr>
-                        <td>GitHubアカウント作成・トークン取得</td>
-                        <td class="highlight">Git初期設定・GitHub連携</td>
+                        <td>Claude の課金・アプリインストール</td>
+                        <td class="highlight">Git 初期設定・GitHub 連携</td>
                     </tr>
                     <tr>
                         <td>プロンプトをコピペして送信</td>
-                        <td class="highlight">Git プラグインの設定</td>
+                        <td class="highlight">自動同期の手順案内</td>
                     </tr>
                     <tr>
                         <td>Claude の確認に「はい」と答える</td>
-                        <td class="highlight">以降のすべての操作</td>
+                        <td class="highlight">テストメモ作成・検証</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
         <div class="steps">
-            <!-- STEP 1: Max プランの契約 -->
+            <!-- Phase 1 Header -->
+            <div style="margin-bottom: 2rem; padding: 1rem 1.5rem; background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.1) 100%); border-radius: 12px; border: 1px solid rgba(99, 102, 241, 0.3);">
+                <h3 style="margin: 0; font-size: 1.1rem; color: var(--accent-primary);">Phase 1: 環境準備（人間がやる）</h3>
+                <p style="margin: 0.25rem 0 0; color: var(--text-secondary); font-size: 0.9rem;">Claude Code を入れる前に、必要なツールを先にインストールします</p>
+            </div>
+
+            <!-- STEP 1: Obsidian のインストール + Vault 作成 -->
             <div class="step">
                 <div class="step-content">
-                    <h3>Max プランの契約</h3>
-                    <p><span style="display: inline-block; padding: 0.2rem 0.6rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.8rem; color: var(--accent-primary); margin-right: 0.5rem;">🌐 ブラウザ</span>claude.ai で Max プランに登録します。費用は会社負担。精算方法は西村に確認。</p>
+                    <h3>Obsidian のインストール + Vault 作成</h3>
+                    <p><span style="display: inline-block; padding: 0.2rem 0.6rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.8rem; color: var(--accent-primary); margin-right: 0.5rem;">🌐 ブラウザ → 💻 アプリ</span>情報を保管するノートアプリをインストールし、Vault（保管庫）を作成します。</p>
                     <span class="step-time">⏱️ 約5分</span>
 
                     <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
                         <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 0.75rem;">ブラウザで <a href="https://obsidian.md" target="_blank" style="color: var(--accent-primary);">https://obsidian.md</a> にアクセス</li>
+                            <li style="margin-bottom: 0.75rem;">画面中央の「<strong style="color: var(--text-primary);">Get Obsidian for free</strong>」ボタンをクリック</li>
+                            <li style="margin-bottom: 0.75rem;">あなたのパソコンに合わせてダウンロード
+                                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                                    <li>Macの場合：「Download for macOS」</li>
+                                    <li>Windowsの場合：「Download for Windows」</li>
+                                </ul>
+                            </li>
+                            <li style="margin-bottom: 0.75rem;">ダウンロードしたファイルをダブルクリックして開く</li>
+                            <li style="margin-bottom: 0.75rem;">画面の指示に従ってインストール（「続ける」「インストール」を押していくだけ）</li>
+                            <li style="margin-bottom: 0.75rem;">Obsidian を起動して「<strong style="color: var(--text-primary);">Create new vault</strong>」をクリック</li>
+                            <li style="margin-bottom: 0.75rem;">Vault name に <code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">MyVault</code> と入力</li>
+                            <li style="margin-bottom: 0.75rem;">Location（保存場所）をドキュメントフォルダに設定
+                                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                                    <li>Mac: <code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">~/Documents/Obsidian/</code></li>
+                                    <li>Windows: <code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">C:\Users\ユーザー名\Documents\Obsidian\</code></li>
+                                </ul>
+                            </li>
+                            <li style="margin-bottom: 0;">「<strong style="color: var(--text-primary);">Create</strong>」をクリック</li>
+                        </ol>
+                        <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px; border: 1px solid rgba(34, 197, 94, 0.3);">
+                            <strong style="color: #22c55e;">✅ 確認：</strong><span style="color: var(--text-secondary);">Obsidian が開いて空の Vault が表示されればOK</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2: GitHub アカウント作成 + アクセストークン取得 -->
+            <div class="step">
+                <div class="step-content">
+                    <h3>GitHub アカウント作成 + アクセストークン取得</h3>
+                    <p><span style="display: inline-block; padding: 0.2rem 0.6rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.8rem; color: var(--accent-primary); margin-right: 0.5rem;">🌐 ブラウザ</span>クラウドにバックアップするための GitHub アカウントを作成し、Git をインストールして、アクセストークンを取得します。</p>
+                    <span class="step-time">⏱️ 約10分</span>
+
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
+                        <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">📦 まず Git をインストール（初めての方のみ）</p>
+                        <div style="margin-bottom: 1.5rem; padding: 1rem; background: var(--bg-primary); border-radius: 8px; border: 1px solid var(--border-color);">
+                            <p style="color: var(--text-secondary); margin-bottom: 0.75rem;"><strong style="color: var(--text-primary);">Mac の場合：</strong>ターミナル（Finder → アプリケーション → ユーティリティ → ターミナル）を開いて、以下をコピペして Enter：</p>
+                            <code style="display: block; background: var(--bg-tertiary); padding: 0.5rem 1rem; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--accent-primary);">xcode-select --install</code>
+                            <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">ポップアップが出たら「インストール」をクリック。数分で完了。</p>
+                            <p style="color: var(--text-secondary); margin-top: 1rem; margin-bottom: 0.5rem;"><strong style="color: var(--text-primary);">Windows の場合：</strong></p>
+                            <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+                                <li style="margin-bottom: 0.5rem;">ブラウザで <a href="https://gitforwindows.org" target="_blank" style="color: var(--accent-primary);">gitforwindows.org</a> にアクセス</li>
+                                <li style="margin-bottom: 0.5rem;">「<strong style="color: var(--text-primary);">Download</strong>」をクリック</li>
+                                <li style="margin-bottom: 0;">ダウンロードしたファイルを実行。設定はすべてデフォルト（「Next」連打）でOK</li>
+                            </ol>
+                        </div>
+
+                        <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">🐙 GitHub アカウントを作成</p>
+                        <ol style="margin: 0 0 1.5rem; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 0.75rem;">ブラウザで <a href="https://github.com" target="_blank" style="color: var(--accent-primary);">https://github.com</a> にアクセス</li>
+                            <li style="margin-bottom: 0.75rem;">画面右上の「<strong style="color: var(--text-primary);">Sign up</strong>」をクリック</li>
+                            <li style="margin-bottom: 0.75rem;">以下を入力：
+                                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                                    <li><strong>メールアドレス</strong>：会社のメールでOK</li>
+                                    <li><strong>パスワード</strong>：8文字以上、数字と小文字を含む</li>
+                                    <li><strong>ユーザー名</strong>：半角英数字（例：yamada-taro）</li>
+                                </ul>
+                            </li>
+                            <li style="margin-bottom: 0.75rem;">「Create account」をクリック</li>
+                            <li style="margin-bottom: 0;">メールに届いた認証コードを入力して完了</li>
+                        </ol>
+
+                        <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">🔑 アクセストークンを取得 <span style="color: #ef4444; font-size: 0.8em;">⚠️ 重要</span></p>
+                        <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 0.75rem;">GitHubにログインした状態で、以下のURLにアクセス：<br>
+                                <a href="https://github.com/settings/tokens/new" target="_blank" style="color: var(--accent-primary); word-break: break-all;">https://github.com/settings/tokens/new</a>
+                            </li>
+                            <li style="margin-bottom: 0.75rem;">以下を入力：
+                                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                                    <li><strong>Note</strong>: <code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">MyVault-ClaudeCode</code>（何でもOK、識別用）</li>
+                                    <li><strong>Expiration</strong>: 「<strong style="color: var(--text-primary);">No expiration</strong>」を選択（無期限）</li>
+                                    <li><strong>Select scopes</strong>: 以下にチェック ✅
+                                        <ul style="margin-top: 0.25rem;">
+                                            <li><code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">repo</code>（一番上、すべての repo 権限）</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li style="margin-bottom: 0.75rem;">画面下部の「<strong style="color: var(--text-primary);">Generate token</strong>」をクリック</li>
+                            <li style="margin-bottom: 0; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.3);">
+                                <strong style="color: #ef4444;">⚠️ 重要：</strong>表示されたトークン（<code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">ghp_</code> で始まる文字列）をコピーして安全な場所に保存<br>
+                                <span style="font-size: 0.9em; color: var(--text-muted);">※このトークンは<strong>一度しか表示されません</strong>。メモ帳などに一時的に貼り付けておいてください。</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3: Homebrew + Node.js のインストール -->
+            <div class="step">
+                <div class="step-content">
+                    <h3>Homebrew + Node.js のインストール</h3>
+                    <p><span style="display: inline-block; padding: 0.2rem 0.6rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.8rem; color: var(--accent-primary); margin-right: 0.5rem;">💻 ターミナル</span>Claude Code の動作に必要なツールをインストールします。</p>
+                    <span class="step-time">⏱️ 約10分</span>
+
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
+                        <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">🍎 Mac の場合</p>
+                        <ol style="margin: 0 0 1.5rem; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 0.75rem;">ターミナルを開く（Finder → アプリケーション → ユーティリティ → ターミナル）</li>
+                            <li style="margin-bottom: 0.75rem;">Homebrew をインストール（以下をコピペして Enter）：
+                                <code style="display: block; margin-top: 0.5rem; background: var(--bg-primary); padding: 0.5rem 1rem; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--accent-primary); word-break: break-all;">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code>
+                                <span style="color: var(--text-muted); font-size: 0.85rem;">パスワードを聞かれたら Mac のログインパスワードを入力</span>
+                            </li>
+                            <li style="margin-bottom: 0.75rem;">Node.js をインストール：
+                                <code style="display: block; margin-top: 0.5rem; background: var(--bg-primary); padding: 0.5rem 1rem; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--accent-primary);">brew install node</code>
+                            </li>
+                            <li style="margin-bottom: 0;">確認：
+                                <code style="display: block; margin-top: 0.5rem; background: var(--bg-primary); padding: 0.5rem 1rem; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--accent-primary);">node --version</code>
+                                <span style="color: var(--text-muted); font-size: 0.85rem;">バージョン番号（例: v22.x.x）が表示されればOK</span>
+                            </li>
+                        </ol>
+
+                        <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">🪟 Windows の場合</p>
+                        <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 0.75rem;">ブラウザで <a href="https://nodejs.org" target="_blank" style="color: var(--accent-primary);">https://nodejs.org</a> にアクセス</li>
+                            <li style="margin-bottom: 0.75rem;">「<strong style="color: var(--text-primary);">LTS</strong>」版をダウンロード</li>
+                            <li style="margin-bottom: 0.75rem;">ダウンロードしたファイルを実行、設定はデフォルトでOK</li>
+                            <li style="margin-bottom: 0;">確認：PowerShell を開いて <code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">node --version</code> でバージョンが表示されればOK</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 2 Header -->
+            <div style="margin-bottom: 2rem; margin-top: 1rem; padding: 1rem 1.5rem; background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(168, 85, 247, 0.1) 100%); border-radius: 12px; border: 1px solid rgba(139, 92, 246, 0.3);">
+                <h3 style="margin: 0; font-size: 1.1rem; color: var(--accent-secondary);">Phase 2: Claude 導入</h3>
+                <p style="margin: 0.25rem 0 0; color: var(--text-secondary); font-size: 0.9rem;">環境が整ったので、Claude Code をインストールします</p>
+            </div>
+
+            <!-- STEP 4: Claude Max 課金 + デスクトップアプリ -->
+            <div class="step">
+                <div class="step-content">
+                    <h3>Claude Max 課金 + デスクトップアプリ</h3>
+                    <p><span style="display: inline-block; padding: 0.2rem 0.6rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.8rem; color: var(--accent-primary); margin-right: 0.5rem;">🌐 ブラウザ → 💻 アプリ</span>Claude のアカウントを作成し、Max プランに登録してデスクトップアプリをインストールします。</p>
+                    <span class="step-time">⏱️ 約10分</span>
+
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
+                        <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">🔐 アカウント作成 & Max プラン登録</p>
+                        <ol style="margin: 0 0 1.5rem; padding-left: 1.5rem; color: var(--text-secondary);">
                             <li style="margin-bottom: 0.75rem;">ブラウザで <a href="https://claude.ai" target="_blank" style="color: var(--accent-primary);">claude.ai</a> を開く</li>
                             <li style="margin-bottom: 0.75rem;">「<strong style="color: var(--text-primary);">Sign up</strong>」をクリック</li>
                             <li style="margin-bottom: 0.75rem;">メールアドレスとパスワードを設定</li>
                             <li style="margin-bottom: 0.75rem;">メール認証を完了する</li>
                             <li style="margin-bottom: 0.75rem;">ログイン後、画面左下の「<strong style="color: var(--text-primary);">Upgrade</strong>」をクリック</li>
                             <li style="margin-bottom: 0.75rem;">「<strong style="color: var(--text-primary);">Max</strong>」（$100/月）を選択</li>
-                            <li style="margin-bottom: 0;">クレジットカード情報を入力して完了</li>
+                            <li style="margin-bottom: 0;">クレジットカード情報を入力して完了。費用は会社負担。精算方法は西村に確認。</li>
                         </ol>
-                        <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px; border: 1px solid rgba(34, 197, 94, 0.3);">
-                            <strong style="color: #22c55e;">✅ 確認：</strong><span style="color: var(--text-secondary);">画面左下に「Max」と表示されていればOK</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- STEP 2: Claude Code デスクトップアプリのインストール -->
-            <div class="step">
-                <div class="step-content">
-                    <h3>Claude Code デスクトップアプリのインストール</h3>
-                    <p><span style="display: inline-block; padding: 0.2rem 0.6rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.8rem; color: var(--accent-primary); margin-right: 0.5rem;">🌐 ブラウザ → 💻 アプリ</span>Claude Code のデスクトップアプリをダウンロードしてインストールします。</p>
-                    <span class="step-time">⏱️ 約5分</span>
+                        <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">💻 デスクトップアプリのインストール</p>
 
-                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
-                        <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">🍎 Mac の場合</p>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong style="color: var(--text-primary);">🍎 Mac の場合</strong></p>
                         <ol style="margin: 0 0 1.5rem; padding-left: 1.5rem; color: var(--text-secondary);">
                             <li style="margin-bottom: 0.5rem;">ブラウザで <a href="https://claude.ai/download" target="_blank" style="color: var(--accent-primary);">claude.ai/download</a> を開く</li>
                             <li style="margin-bottom: 0.5rem;">「<strong style="color: var(--text-primary);">Download for Mac</strong>」をクリック</li>
@@ -1429,8 +1563,8 @@
                             <li style="margin-bottom: 0;">アプリケーションフォルダから Claude を起動</li>
                         </ol>
 
-                        <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">🪟 Windows の場合</p>
-                        <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong style="color: var(--text-primary);">🪟 Windows の場合</strong></p>
+                        <ol style="margin: 0 0 1.5rem; padding-left: 1.5rem; color: var(--text-secondary);">
                             <li style="margin-bottom: 0.5rem;">ブラウザで <a href="https://claude.ai/download" target="_blank" style="color: var(--accent-primary);">claude.ai/download</a> を開く</li>
                             <li style="margin-bottom: 0.5rem;">「<strong style="color: var(--text-primary);">Download for Windows</strong>」をクリック</li>
                             <li style="margin-bottom: 0.5rem;">ダウンロードした .exe を実行</li>
@@ -1438,24 +1572,24 @@
                             <li style="margin-bottom: 0;">デスクトップから起動</li>
                         </ol>
 
-                        <p style="color: var(--text-primary); font-weight: 500; margin-top: 1.5rem; margin-bottom: 1rem;">🔑 初回ログイン</p>
+                        <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">🔑 初回ログイン</p>
                         <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
                             <li style="margin-bottom: 0.5rem;">アプリを起動すると、ログイン画面が表示される</li>
-                            <li style="margin-bottom: 0.5rem;">STEP 1 で作成したアカウント（メールアドレスとパスワード）でログイン</li>
-                            <li style="margin-bottom: 0.5rem;">「プロジェクトを選択」と聞かれたら、一旦スキップでOK</li>
-                            <li style="margin-bottom: 0;">ファイルへのアクセス許可を求められたら「<strong style="color: var(--text-primary);">許可</strong>」をクリック</li>
+                            <li style="margin-bottom: 0.5rem;">作成したアカウント（メールアドレスとパスワード）でログイン</li>
+                            <li style="margin-bottom: 0.5rem;">ファイルへのアクセス許可を求められたら「<strong style="color: var(--text-primary);">許可</strong>」をクリック</li>
+                            <li style="margin-bottom: 0;">「プロジェクトを選択」→ STEP 1 で作成した MyVault フォルダを選択（~/Documents/Obsidian/MyVault）</li>
                         </ol>
                         <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px; border: 1px solid rgba(34, 197, 94, 0.3);">
-                            <strong style="color: #22c55e;">✅ 確認：</strong><span style="color: var(--text-secondary);">Claude のチャット画面が表示されればOK</span>
+                            <strong style="color: #22c55e;">✅ 確認：</strong><span style="color: var(--text-secondary);">Claude Code のチャット画面が表示され、MyVault が開かれた状態になればOK</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- STEP 3: CLAUDE.md の設定 -->
+            <!-- STEP 5: CLAUDE.md の設定 -->
             <div class="step">
                 <div class="step-content">
-                    <h3>CLAUDE.md の設定 <span style="color: #22c55e; font-size: 0.8em;">🎉 ここからAIにお任せ！</span></h3>
+                    <h3>CLAUDE.md の設定</h3>
                     <p><span style="display: inline-block; padding: 0.2rem 0.6rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.8rem; color: var(--accent-primary); margin-right: 0.5rem;">💻 Claude Code</span>以下をコピーして Claude Code に送信するだけ。AIが自動で設定します。</p>
                     <span class="step-time">⏱️ 約5分</span>
 
@@ -1567,36 +1701,18 @@ Claudeは使うほど賢くなる。ただし仕組みが必要。
                 </div>
             </div>
 
-            <!-- STEP 4: Obsidian のインストール -->
-            <div class="step">
-                <div class="step-content">
-                    <h3>Obsidian のインストール</h3>
-                    <p><span style="display: inline-block; padding: 0.2rem 0.6rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.8rem; color: var(--accent-primary); margin-right: 0.5rem;">🌐 ブラウザ → 💻 アプリ</span>情報を保管するノートアプリをインストールします。</p>
-                    <span class="step-time">⏱️ 約5分</span>
-
-                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
-                        <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
-                            <li style="margin-bottom: 0.75rem;">ブラウザで <a href="https://obsidian.md" target="_blank" style="color: var(--accent-primary);">https://obsidian.md</a> にアクセス</li>
-                            <li style="margin-bottom: 0.75rem;">画面中央の「<strong style="color: var(--text-primary);">Get Obsidian for free</strong>」ボタンをクリック</li>
-                            <li style="margin-bottom: 0.75rem;">あなたのパソコンに合わせてダウンロード
-                                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                                    <li>Macの場合：「Download for macOS」</li>
-                                    <li>Windowsの場合：「Download for Windows」</li>
-                                </ul>
-                            </li>
-                            <li style="margin-bottom: 0.75rem;">ダウンロードしたファイルをダブルクリックして開く</li>
-                            <li style="margin-bottom: 0;">画面の指示に従ってインストール（「続ける」「インストール」を押していくだけ）</li>
-                        </ol>
-                    </div>
-                </div>
+            <!-- Phase 3 Header -->
+            <div style="margin-bottom: 2rem; margin-top: 1rem; padding: 1rem 1.5rem; background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(16, 185, 129, 0.1) 100%); border-radius: 12px; border: 1px solid rgba(34, 197, 94, 0.3);">
+                <h3 style="margin: 0; font-size: 1.1rem; color: #22c55e;">Phase 3: AI にやらせる 🎉</h3>
+                <p style="margin: 0.25rem 0 0; color: var(--text-secondary); font-size: 0.9rem;">ここからはプロンプトをコピペするだけ。Claude が全部やってくれます</p>
             </div>
 
-            <!-- STEP 5: Vault スターターキットの導入 -->
+            <!-- STEP 6: スターターキットの導入 -->
             <div class="step">
                 <div class="step-content">
-                    <h3>Vault スターターキットの導入</h3>
+                    <h3>スターターキットの導入</h3>
                     <p><span style="display: inline-block; padding: 0.2rem 0.6rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.8rem; color: var(--accent-primary); margin-right: 0.5rem;">🌐 ブラウザ → 💻 Claude Code</span>広告運用のコンテキスト（講義1-9）とテンプレートが入ったスターターキットをダウンロードして使います。</p>
-                    <span class="step-time">⏱️ 約5分</span>
+                    <span class="step-time">⏱️ 約3分</span>
 
                     <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
                         <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
@@ -1611,17 +1727,16 @@ Claudeは使うほど賢くなる。ただし仕組みが必要。
 
                     <div class="code-block" style="margin-top: 1rem;">
                         <button class="copy-btn" onclick="copyCode(this)"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> コピー</button>
-                        <pre>~/Downloads/vault-starter.zip を展開して、Obsidian の Vault としてセットアップして。
+                        <pre>~/Downloads/vault-starter.zip を展開して、MyVault にセットアップして。
 
 やること：
-1. ZIPを ~/Documents/Obsidian/MyVault に展開
-2. Obsidian がまだインストールされてなければインストール方法を教えて
-3. 展開後、Vault の中身（フォルダ構造、講義ファイル、テンプレート）を確認して報告して</pre>
+1. ZIPを展開して、中身を ~/Documents/Obsidian/MyVault/ に配置（既存のフォルダに上書き）
+2. 展開後、Vault の中身（フォルダ構造、講義ファイル、テンプレート）を確認して報告して</pre>
                     </div>
 
                     <div style="margin-top: 1rem; padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px; border: 1px solid rgba(34, 197, 94, 0.3);">
                         <strong style="color: #22c55e;">💡 Claude が全部やってくれる</strong><br>
-                        <span style="color: var(--text-secondary);">ZIPの展開、フォルダ配置、中身の確認まで自動。あなたは最後にObsidianを開いて「Vaultを開く」から ~/Documents/Obsidian/MyVault を選ぶだけ。</span>
+                        <span style="color: var(--text-secondary);">ZIPの展開、ファイル配置、中身の確認まで自動。完了したら Obsidian を開いて中身を確認してみてください。</span>
                     </div>
 
                     <div class="code-block" style="margin-top: 1.5rem;">
@@ -1641,92 +1756,20 @@ MyVault/
                 </div>
             </div>
 
-            <!-- STEP 6: GitHub アカウントの作成 -->
+            <!-- STEP 7: GitHub 連携 -->
             <div class="step">
                 <div class="step-content">
-                    <h3>GitHub アカウントの作成</h3>
-                    <p><span style="display: inline-block; padding: 0.2rem 0.6rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.8rem; color: var(--accent-primary); margin-right: 0.5rem;">🌐 ブラウザ</span>クラウドにバックアップするためのGitHubアカウントを作成し、Gitをインストールします。</p>
-                    <span class="step-time">⏱️ 約5分</span>
-
-                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid var(--accent-primary);">
-                        <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">📦 まず Git をインストール（初めての方のみ）</p>
-                        <div style="margin-bottom: 1.5rem; padding: 1rem; background: var(--bg-primary); border-radius: 8px; border: 1px solid var(--border-color);">
-                            <p style="color: var(--text-secondary); margin-bottom: 0.75rem;"><strong style="color: var(--text-primary);">Mac の場合：</strong>ターミナル（Finder → アプリケーション → ユーティリティ → ターミナル）を開いて、以下をコピペして Enter：</p>
-                            <code style="display: block; background: var(--bg-tertiary); padding: 0.5rem 1rem; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--accent-primary);">xcode-select --install</code>
-                            <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">ポップアップが出たら「インストール」をクリック。数分で完了。</p>
-                            <p style="color: var(--text-secondary); margin-top: 1rem; margin-bottom: 0.5rem;"><strong style="color: var(--text-primary);">Windows の場合：</strong></p>
-                            <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
-                                <li style="margin-bottom: 0.5rem;">ブラウザで <a href="https://gitforwindows.org" target="_blank" style="color: var(--accent-primary);">gitforwindows.org</a> にアクセス</li>
-                                <li style="margin-bottom: 0.5rem;">「<strong style="color: var(--text-primary);">Download</strong>」をクリック</li>
-                                <li style="margin-bottom: 0;">ダウンロードしたファイルを実行。設定はすべてデフォルト（「Next」連打）でOK</li>
-                            </ol>
-                        </div>
-
-                        <p style="color: var(--text-primary); font-weight: 500; margin-bottom: 1rem;">🐙 GitHub アカウントを作成</p>
-                        <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
-                            <li style="margin-bottom: 0.75rem;">ブラウザで <a href="https://github.com" target="_blank" style="color: var(--accent-primary);">https://github.com</a> にアクセス</li>
-                            <li style="margin-bottom: 0.75rem;">画面右上の「<strong style="color: var(--text-primary);">Sign up</strong>」をクリック</li>
-                            <li style="margin-bottom: 0.75rem;">以下を入力：
-                                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                                    <li><strong>メールアドレス</strong>：会社のメールでOK</li>
-                                    <li><strong>パスワード</strong>：8文字以上、数字と小文字を含む</li>
-                                    <li><strong>ユーザー名</strong>：半角英数字（例：yamada-taro）</li>
-                                </ul>
-                            </li>
-                            <li style="margin-bottom: 0.75rem;">「Create account」をクリック</li>
-                            <li style="margin-bottom: 0;">メールに届いた認証コードを入力して完了！</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-
-            <!-- STEP 7: アクセストークンの取得 -->
-            <div class="step">
-                <div class="step-content">
-                    <h3>アクセストークンの取得 <span style="color: #ef4444; font-size: 0.8em;">⚠️ 重要</span></h3>
-                    <p><span style="display: inline-block; padding: 0.2rem 0.6rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.8rem; color: var(--accent-primary); margin-right: 0.5rem;">🌐 ブラウザ</span>AIがGitHubを操作するためのトークンを取得します。<strong style="color: var(--accent-primary);">このステップだけは手動で行う必要があります。</strong></p>
-                    <span class="step-time">⏱️ 約5分</span>
-
-                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border-left: 3px solid #ef4444;">
-                        <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
-                            <li style="margin-bottom: 0.75rem;">GitHubにログインした状態で、以下のURLにアクセス：<br>
-                                <a href="https://github.com/settings/tokens/new" target="_blank" style="color: var(--accent-primary); word-break: break-all;">https://github.com/settings/tokens/new</a>
-                            </li>
-                            <li style="margin-bottom: 0.75rem;">以下を入力：
-                                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                                    <li><strong>Note</strong>: <code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">MyVault-ClaudeCode</code>（何でもOK、識別用）</li>
-                                    <li><strong>Expiration</strong>: 「<strong style="color: var(--text-primary);">No expiration</strong>」を選択（無期限）</li>
-                                    <li><strong>Select scopes</strong>: 以下にチェック ✅
-                                        <ul style="margin-top: 0.25rem;">
-                                            <li><code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">repo</code>（一番上、すべての repo 権限）</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li style="margin-bottom: 0.75rem;">画面下部の「<strong style="color: var(--text-primary);">Generate token</strong>」をクリック</li>
-                            <li style="margin-bottom: 0; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.3);">
-                                <strong style="color: #ef4444;">⚠️ 重要：</strong>表示されたトークン（<code style="background: var(--bg-primary); padding: 0.2rem 0.5rem; border-radius: 4px;">ghp_</code> で始まる文字列）をコピーして安全な場所に保存<br>
-                                <span style="font-size: 0.9em; color: var(--text-muted);">※このトークンは<strong>一度しか表示されません</strong>。メモ帳などに一時的に貼り付けておいてください。</span>
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-
-            <!-- STEP 8: Git初期設定とGitHub連携 -->
-            <div class="step">
-                <div class="step-content">
-                    <h3>Git・GitHub 連携 & 自動同期の設定 <span style="color: #22c55e; font-size: 0.8em;">🎉 AIにお任せ！</span></h3>
-                    <p><span style="display: inline-block; padding: 0.2rem 0.6rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.8rem; color: var(--accent-primary); margin-right: 0.5rem;">💻 Claude Code</span>以下をコピーして Claude Code に送信。Git設定からGitHub連携、Obsidianの自動同期まで全部やってくれます。</p>
+                    <h3>GitHub 連携</h3>
+                    <p><span style="display: inline-block; padding: 0.2rem 0.6rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.8rem; color: var(--accent-primary); margin-right: 0.5rem;">💻 Claude Code</span>以下をコピーして Claude Code に送信。Git 初期設定から GitHub 連携まで全部やってくれます。</p>
                     <span class="step-time">⏱️ 約5分</span>
 
                     <div class="code-block" style="margin-top: 1rem;">
                         <button class="copy-btn" onclick="copyCode(this)"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> コピー</button>
-                        <pre>Obsidian Vault を GitHub にバックアップして自動同期したい。以下の情報で設定して。
+                        <pre>MyVault を GitHub にバックアップしたい。以下の情報で Git 初期設定と GitHub 連携をして。
 
 - GitHubユーザー名: （ここにあなたのユーザー名を入力）
 - メールアドレス: （ここにGitHubに登録したメールを入力）
-- アクセストークン: （ここに STEP 7 で取得したトークンを貼り付け）
+- アクセストークン: （ここに STEP 2 で取得したトークンを貼り付け）
 - リポジトリ名: MyVault
 - リポジトリの公開設定: private（非公開）
 - Vaultの場所: ~/Documents/Obsidian/MyVault
@@ -1737,17 +1780,37 @@ MyVault/
 3. .gitignore に .obsidian/workspace.json を追加
 4. GitHub にプライベートリポジトリを作成
 5. リモートリポジトリに初回プッシュ
-6. 完了したら、Obsidian で自動同期するための「Git」プラグインの設定手順を教えて。以下の設定にしたい：
-   - 自動プッシュ間隔: 10分
-   - 起動時に自動プル: ON
-   - 自動コミットメッセージ: "auto-sync {{date}}"</pre>
+6. 完了したら確認して報告</pre>
+                    </div>
+
+                    <div style="margin-top: 1rem; padding: 1rem; background: var(--bg-tertiary); border-radius: 8px;">
+                        <strong style="color: var(--text-primary);">📌 「実行してよいですか？」と聞かれたら「はい」と答えてください。</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 8: 自動プル・プッシュの設定 -->
+            <div class="step">
+                <div class="step-content">
+                    <h3>自動プル・プッシュの設定</h3>
+                    <p><span style="display: inline-block; padding: 0.2rem 0.6rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.8rem; color: var(--accent-primary); margin-right: 0.5rem;">💻 Claude Code → 💻 Obsidian</span>Obsidian で Vault を自動で GitHub に同期する設定をします。</p>
+                    <span class="step-time">⏱️ 約5分</span>
+
+                    <div class="code-block" style="margin-top: 1rem;">
+                        <button class="copy-btn" onclick="copyCode(this)"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> コピー</button>
+                        <pre>Obsidian で Vault を自動で GitHub に同期する設定をしたい。
+「Git」というコミュニティプラグインのインストールと設定の手順を教えて。
+
+設定したい内容：
+- 自動プッシュ間隔: 10分
+- 起動時に自動プル: ON
+- 自動コミットメッセージ: "auto-sync {{date}}"</pre>
                     </div>
 
                     <div style="margin-top: 1rem; padding: 1rem; background: var(--bg-tertiary); border-radius: 8px;">
                         <strong style="color: var(--text-primary);">📌 2段階で進みます</strong><br>
                         <span style="color: var(--text-secondary);">
-                            <strong>前半（自動）</strong>：Git設定〜GitHub連携はClaudeが自動でやります。「実行してよいですか？」と聞かれたら「はい」と答えてください。<br>
-                            <strong>後半（手動）</strong>：Git プラグインの設定は、Claudeが出す手順に沿って自分で操作します（Obsidianの画面で数クリックするだけ）。
+                            Claude が手順を教えてくれるので、Obsidian の画面で操作してください（数クリックで終わります）。
                         </span>
                     </div>
                 </div>
@@ -1810,30 +1873,28 @@ Claude Code × Obsidian × GitHub の環境構築が完了しました。
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- STEP 10: 毎日使う -->
-            <div class="step">
-                <div class="step-content">
-                    <h3>毎日使う（これが一番大事）</h3>
-                    <p>セットアップしたら終わりではない。ChatGPTに聞いてたことを、全部 Claude Code に聞く。毎日使うことで Claude はあなた専用のAIに進化する。</p>
+        <!-- 毎日使う（ステップ外のコールアウト） -->
+        <div style="margin-top: 3rem; padding: 2rem; background: var(--bg-secondary); border-radius: 16px; border: 1px solid var(--border-color);">
+            <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">📌 毎日使う（これが一番大事）</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">セットアップしたら終わりではない。ChatGPTに聞いてたことを、全部 Claude Code に聞く。毎日使うことで Claude はあなた専用のAIに進化する。</p>
 
-                    <div style="margin-top: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-                        <div style="padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border: 1px solid var(--border-color);">
-                            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📝</div>
-                            <div style="font-weight: 500; color: var(--text-primary); margin-bottom: 0.5rem;">MTGの後</div>
-                            <div style="color: var(--text-secondary); font-size: 0.9rem;">「この文字起こしを議事録にまとめて」</div>
-                        </div>
-                        <div style="padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border: 1px solid var(--border-color);">
-                            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🤔</div>
-                            <div style="font-weight: 500; color: var(--text-primary); margin-bottom: 0.5rem;">判断に迷った時</div>
-                            <div style="color: var(--text-secondary); font-size: 0.9rem;">「〇〇について壁打ちしたい。選択肢を整理して」</div>
-                        </div>
-                        <div style="padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border: 1px solid var(--border-color);">
-                            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📊</div>
-                            <div style="font-weight: 500; color: var(--text-primary); margin-bottom: 0.5rem;">週末に</div>
-                            <div style="color: var(--text-secondary); font-size: 0.9rem;">「今週の振り返りを作って」</div>
-                        </div>
-                    </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                <div style="padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border: 1px solid var(--border-color);">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📝</div>
+                    <div style="font-weight: 500; color: var(--text-primary); margin-bottom: 0.5rem;">MTGの後</div>
+                    <div style="color: var(--text-secondary); font-size: 0.9rem;">「この文字起こしを議事録にまとめて」</div>
+                </div>
+                <div style="padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border: 1px solid var(--border-color);">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🤔</div>
+                    <div style="font-weight: 500; color: var(--text-primary); margin-bottom: 0.5rem;">判断に迷った時</div>
+                    <div style="color: var(--text-secondary); font-size: 0.9rem;">「〇〇について壁打ちしたい。選択肢を整理して」</div>
+                </div>
+                <div style="padding: 1.5rem; background: var(--bg-tertiary); border-radius: 12px; border: 1px solid var(--border-color);">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📊</div>
+                    <div style="font-weight: 500; color: var(--text-primary); margin-bottom: 0.5rem;">週末に</div>
+                    <div style="color: var(--text-secondary); font-size: 0.9rem;">「今週の振り返りを作って」</div>
                 </div>
             </div>
         </div>
